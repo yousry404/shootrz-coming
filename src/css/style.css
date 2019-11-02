@@ -1,0 +1,145 @@
+@font-face {
+  font-family: "AGLight";
+  src: url("Akzidenz-Grotesk-BQ-Light_2831.ttf");
+  font-weight: normal;
+  font-display: auto;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "AGBold";
+  src: url("Akzidenz-Grotesk-BQ-Bold-Extended_2808.ttf");
+  font-weight: normal;
+  font-display: auto;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "AGRegular";
+  src: url("AkzidenzGrotesk_Regular.otf");
+  font-weight: normal;
+  font-display: auto;
+  font-style: normal;
+}
+body {
+  padding: 0;
+  margin: 0;
+  background-color: #fe515f;
+  box-sizing: border-box;
+  font-family: "AGRegular";
+}
+
+header {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+
+  height: calc(100vh - 30px);
+}
+header h1 {
+  font-family: "AGBold";
+  font-size: 80px;
+  color: #fff;
+}
+header .on-demand {
+  font-family: "AGRegular";
+  font-size: 24px;
+  color: #fff;
+}
+header .on-demand span {
+  font-family: "AGBold";
+  font-size: 28px;
+}
+header .interested {
+  margin-top: 20px;
+  font-size: 14px;
+  color: #fff;
+}
+.shootrz {
+  padding-left: 40px;
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+}
+.image-container {
+  flex: 1;
+  text-align: center;
+}
+.image-container img {
+  width: 70%;
+}
+p {
+  margin: 0;
+}
+
+.subscribe {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+.subscribe input {
+  font-size: 14px;
+
+}
+.subscribe .alert {
+  font-size: 14px;
+  
+}
+.subscribe__button {
+  color: #fe515f;
+  font-size: 14px;
+
+}
+
+.subscribe button:hover {
+  color: #fe515f;
+}
+.subscribe p {
+  font-size: 12px;
+  color: #fff;
+}
+.result {
+  position: absolute;
+  top: 100%;
+  left: 0;
+}
+form {
+  margin: 0;
+}
+
+footer {
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  color: #fff;
+  font-family: "AGLight";
+  font-size: 14px;
+}
+
+
+@media (max-width: 768px) {
+  header {
+    text-align: center;
+  }
+  header h1 {
+    font-size: 50px;
+  }
+  .shootrz {
+    padding: 0;
+  }
+  .image-container {
+    padding: 20px;
+  }
+  
+  .row {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+}
