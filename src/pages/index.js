@@ -8,7 +8,7 @@ import Airtable from "airtable"
 
 const IndexPage = () => {
   // dotenv.config()
-  const base = new Airtable({ apiKey: process.env.AIRTABLE }).base(
+  const base = new Airtable({ apiKey: process.env.GATSBY_AIRTABLE }).base(
     "appchyGLZEPkWM5qj"
   )
   const [email, setEmail] = useState("")
