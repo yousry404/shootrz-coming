@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: `Shootrz is coming soom`,
+    title: `Shootrz is coming soon`,
     description: `The first on-deman photography service in MENA will be live, stay tuned.`,
     author: `@shootrz`,
   },
