@@ -80,9 +80,10 @@ header .mena {
   line-height: 24px;
 }
 header .interested {
-  font-size: 14px;
+  font-size: 16px;
   color: #fff;
   margin-top: 20px;
+  margin-bottom: 10px;
 }
 
 .shootrz {
@@ -206,8 +207,8 @@ footer {
     padding: 0 10px;
   }
   .interested {
-    margin-bottom: 10px;
     line-height: 14px;
+    font-size: 11px !important;
   }
   .subscribe input {
     font-size: 12px !important;
