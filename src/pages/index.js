@@ -3,7 +3,8 @@ import React, { useState } from "react"
 import SEO from "../components/seo"
 import "../css/style.css"
 import Logo from "../images/logo.svg"
-import Airtable from "airtable"
+import Airtable from "airtable";
+import Camera  from "../images/shootrz-photo.webp"
 // import dotenv from "dotenv"
 
 const IndexPage = () => {
@@ -49,16 +50,22 @@ const IndexPage = () => {
   }
 
   return (
-    <>
+    <div className="page-container">
       <SEO title="Shootrz - On-demand Photography" />
       <header>
-        <div className="row">
-          <div className="col-md-7">
+        <div className="row no-gutters">
+          <div className="col-md-5 offset-md-2">
             <div className="shootrz">
-              <h1>Shootrz</h1>
+              <div className="title">
+              <img src={Logo} alt="Shootz" />
+              <h1>SHOOTRZ</h1>
+
+              </div>
               <p className="on-demand">
-                Photographers on-demand in MENA Region, <span>coming soon!</span>
+                Photographers on-demand
               </p>
+              <p className="mena">in MENA Region</p>
+              <p className="soon">coming soon!</p>
               <p className="interested">Interested in the idea? we can notify you once we start.</p>
               <div className="subscribe">
                 <form className="input-group" onSubmit={handleSubmit}>
@@ -73,7 +80,7 @@ const IndexPage = () => {
                     />
                     <div className="input-group-append ">
                       <input
-                        className="btn btn-light subscribe__button"
+                        className="subscribe__button"
                         id="button-addon2"
                         type="submit"
                         value="Subscribe"
@@ -90,7 +97,7 @@ const IndexPage = () => {
 
           <div className="col-md-5">
             <div className="image-container">
-              <img src={Logo} alt="Shootz" />
+              <img src={Camera} alt="Shootz" />
             </div>
           </div>
         </div>
@@ -98,7 +105,7 @@ const IndexPage = () => {
       <footer>
         <p>&copy; All Copyrights reserved to Shootrz 2019.</p>
       </footer>
-    </>
+    </div>
   )
 }
 
