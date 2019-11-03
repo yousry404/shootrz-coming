@@ -217,4 +217,7 @@ footer {
   .subscribe__button {
     font-size: 14px !important;
   }
+  .result {
+    left: 10px;
+  }
 }
