@@ -6,3 +6,6 @@
 
 // You can delete this file if you're not using it
 import 'bootstrap/dist/css/bootstrap.min.css';
+
+import "./src/css/typography.css";
+export { default as wrapRootElement } from './src/ReduxWrapper';

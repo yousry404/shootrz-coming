@@ -1,0 +1,35 @@
+@font-face {
+  font-family: "AGLight";
+  src: url("../fonts/Akzidenz-Grotesk-BQ-Light_2831.ttf");
+  font-weight: normal;
+  font-display: auto;
+  font-style: normal;
+}
+@font-face {
+  font-family: "AGMedium";
+  src: url("../fonts/Akzidenz-Grotesk-BQ-Medium_2839.ttf");
+  font-weight: normal;
+  font-display: auto;
+  font-style: normal;
+}
+@font-face {
+  font-family: "AGBold";
+  src: url("../fonts/Akzidenz-Grotesk-BQ-Bold-Extended_2808.ttf");
+  font-weight: normal;
+  font-display: auto;
+  font-style: normal;
+}
+@font-face {
+  font-family: "AGSuper";
+  src: url("../fonts/Akzidenz-Grotesk-BQ-Super_2842.ttf");
+  font-weight: normal;
+  font-display: auto;
+  font-style: normal;
+}
+@font-face {
+  font-family: "AGRegular";
+  src: url("../fonts/AkzidenzGrotesk_Regular.otf");
+  font-weight: normal;
+  font-display: auto;
+  font-style: normal;
+}

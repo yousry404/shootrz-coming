@@ -24,7 +24,6 @@
 body {
   padding: 0;
   margin: 0;
-  background-color: #fe515f;
   box-sizing: border-box;
   font-family: "AGRegular";
 }
@@ -33,6 +32,8 @@ body {
   height: 100vh;
   display: flex;
   flex-direction: column;
+  background-color: #fe515f;
+
 }
 
 header {

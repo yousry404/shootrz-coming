@@ -1,0 +1,270 @@
+
+$primary: #fe515f;
+.navigation {
+  width: 94%;
+  margin: auto;
+}
+nav {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+.nav-item a {
+  font-family: "AGBold";
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+  &.active {
+    position: relative;
+    &::before {
+      position: absolute;
+      top: 110%;
+      left: 0;
+      right: 0;
+      bottom: -5px;
+      content: "";
+      background: $primary;
+    }
+  }
+  &:hover {
+    color: black;
+    text-decoration: none;
+  }
+}
+.nav-item + .nav-item {
+  margin-left: 80px;
+}
+.contain-header {
+  display: flex;
+  flex-direction: column;
+}
+.header {
+  width: 84%;
+  margin: auto;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  h1 {
+    font-size: 50px;
+    width: 60%;
+    font-family: "AGBold";
+    margin-top: 50px;
+  }
+  p {
+    font-size: 25px;
+    width: 45%;
+    font-family: "AGLight";
+    margin-bottom: 30px;
+  }
+
+  .header__button {
+    font-family: "AGBold";
+    font-size: 30px;
+    color: black;
+    text-decoration: none;
+    border: 5px solid $primary;
+    align-self: flex-start;
+    padding: 15px 30px;
+    &:hover {
+      color: black;
+      text-decoration: none;
+    }
+  }
+}
+.contain {
+  width: 84%;
+  margin: auto;
+}
+
+.login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.login h1 {
+  max-width: 500px;
+  text-align: center;
+}
+
+/* signup */
+
+.signup-form {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  .form-container {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    height: 60%;
+    padding: 20px;
+    border-radius: 10px;
+  }
+  button {
+    background-color: $primary;
+    color: #000;
+  }
+  
+  .MuiFormControl-root {
+    margin-bottom: 40px;
+  }
+
+}
+
+.categories {
+  padding-bottom: 90px;
+  .card-title {
+    font-family: "AGBold";
+    font-size: 20px;
+  }
+  .card-contain {
+    .card-img-top {
+      border-radius: 0 !important;
+    }
+    box-shadow: 0px 5px 30px #00000029;
+    height: 100%;
+  }
+  .card {
+    height: 100%;
+  }
+  .card-item {
+    margin-bottom: 80px;
+  }
+
+  .card__body {
+    border: 5px solid $primary;
+    padding: 10px;
+    min-height: 80px;
+    height: 100%;
+  }
+}
+.footer {
+  background-color: $primary;
+  color: #fff;
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
+  padding: 50px 0;
+  p {
+    font-family: "AGRegular";
+    font-size: 14px;
+  }
+  a {
+    background: #fff;
+    color: $primary;
+    font-family: "AGBold";
+    font-size: 24px;
+    padding: 12px 18px;
+    &:hover {
+      background: #fff;
+      color: $primary;
+      text-decoration: none;
+    }
+  }
+  img {
+    margin: 20px;
+  }
+}
+.copy {
+  margin: 0;
+}
+
+/* pricing */
+section {
+  h1 {
+    text-align: center;
+    font-family: "AGBold";
+    font-size: 30px;
+  }
+}
+.pricing {
+  padding-bottom: 50px;
+  .card-title {
+    font-family: "AGBold";
+    font-size: 30px;
+  }
+  .card-subtitle {
+    font-family: "AGSuper";
+    font-size: 40px;
+  }
+  .card-body {
+    padding: 5px;
+  }
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+  li {
+    text-decoration: none;
+    font-family: "AGRegular";
+    font-size: 20px;
+  }
+}
+
+.pricing__item {
+  border: 5px solid $primary;
+}
+.pricing__item__button {
+  display: block;
+
+  color: #fff;
+  background: $primary;
+  margin: 5px;
+  font-family: "AGBold";
+  font-size: 20px;
+  text-align: center;
+  &:hover {
+    color: #fff;
+    text-decoration: none;
+  }
+}
+
+/* why */
+.why {
+  padding-bottom: 90px;
+
+  &__items {
+    display: flex;
+    justify-content: space-between;
+  }
+  .card {
+    flex: 1;
+    border: none;
+  }
+  .card + .card {
+    margin-left: 20px;
+  }
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+  li {
+    text-decoration: none;
+  }
+
+  h3 {
+    font-family: "AGBold" !important;
+    font-size: 20px;
+  }
+  p {
+    font-family: "AGRegular";
+    font-size: 15px;
+  }
+}
+.MuiStepConnector-line {
+  border-color: $primary !important; 
+}
+.MuiStepIcon-root.MuiStepIcon-active {
+   color: $primary !important; 
+}
+.MuiStepIcon-completed {
+  color: $primary !important; 
+}
+.MuiButton-containedPrimary:hover {
+  background-color: $primary !important;
+}
+.MuiButton-label {
+  color: #fff;
+}
