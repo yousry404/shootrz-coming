@@ -1,13 +1,13 @@
 import React, { useState } from "react"
 import { Card, CardImg, CardTitle } from "reactstrap"
-import weddingSrc from "../../images/wedding.jpg"
-import portraitSrc from "../../images/portrait.jpg"
-import foodSrc from "../../images/food.jpg"
-import eventSrc from "../../images/wedding.jpg"
-import fashionSrc from "../../images/fashion.jpg"
-import babySrc from "../../images/baby.jpg"
-import graduationSrc from "../../images/graduation.jpg"
-import realEstateSrc from "../../images/real-estate.jpg"
+import weddingSrc from "../../images/wedding.webp"
+import portraitSrc from "../../images/portrait.webp"
+import foodSrc from "../../images/food.webp"
+import eventSrc from "../../images/wedding.webp"
+import fashionSrc from "../../images/fashion.webp"
+import babySrc from "../../images/baby.webp"
+import graduationSrc from "../../images/graduation.webp"
+import realEstateSrc from "../../images/real-estate.webp"
 const Categories = () => {
   const [categories] = useState([
     { name: "Wedding/Engagement", src: weddingSrc },

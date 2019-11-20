@@ -32,7 +32,7 @@ const Navigation = props => {
     <div className="navigation">
       
       <Navbar light expand="md">
-          <Link to="/" className="navbar-brand">
+          <Link to="/prototype" className="navbar-brand">
               <img src={logo} alt="shootrz" />
           </Link>
         <NavbarToggler onClick={toggle} />
