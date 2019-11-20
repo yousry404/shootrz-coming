@@ -5,7 +5,6 @@ import { connect } from "react-redux"
 // import "../../css/login.scss"
 import { changeEmail, changePassword, submitForm } from "./actions"
 import { bindActionCreators } from "redux"
-import "./index.scss"
 import { TextField } from "@material-ui/core"
 const Login = ({
   email,
