@@ -5,20 +5,16 @@ import Book from "../components/book"
 import Login from "../containers/login"
 import Signup from "../containers/signup"
 import PrivateRoute from "../components/privateRoute"
-// import { Provider } from "react-redux"
-// import { createStore, applyMiddleware } from "redux"
-// import rootReducer from "../reducers"
-// import thunk from "redux-thunk"
+import SEO from "../components/seo"
 
 const App = () => (
-//   <Provider store={createStore(rootReducer, applyMiddleware(thunk))}>
-    <Layout>
-      <Router>
-        <PrivateRoute path="/app/book" component={Book} />
-        <Login path="/app/login" />
-        <Signup path="/app/signup" />
-      </Router>
-    </Layout>
-//   </Provider>
+  <Layout>
+    <SEO title="Shootrz - On-demand Photography" />
+    <Router>
+      <PrivateRoute path="/app/book" component={Book} />
+      <Login path="/app/login" />
+      <Signup path="/app/signup" />
+    </Router>
+  </Layout>
 )
 export default App

@@ -6,10 +6,12 @@ import WhyShootrz from "../components/home/why"
 import Footer from "../components/home/footer"
 import { Link } from "gatsby"
 import "../css/layout.scss"
+import SEO from "../components/seo"
 
 const Home = () => {
   return (
     <div className="protoype">
+      <SEO title="Shootrz - On-demand Photography" />
       <Layout>
         <div className="contain-header">
           <div className="header">
