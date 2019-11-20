@@ -24,7 +24,7 @@ export const changePassword = value => {
 
 export const submitForm = ({ email, password }) => async dispatch => {
   try {
-    const response = await axios.post("http://localhost:5001/api/login", {
+    const response = await axios.post("https://shootrz-api.herokuapp.com/api/login", {
       email,
       password,
     })

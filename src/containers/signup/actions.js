@@ -39,7 +39,7 @@ export const changeConfirmPassword = value => {
 
 export const submitForm = ({ name, email, password }) => async dispatch => {
   try {
-    const response = await axios.post("http://localhost:5001/api/signup", {
+    const response = await axios.post("https://shootrz-api.herokuapp.com/api/signup", {
       name,
       email,
       password,

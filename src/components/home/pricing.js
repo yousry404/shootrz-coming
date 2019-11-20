@@ -17,7 +17,7 @@ const Pricing = () => {
   return (
     <section className="pricing" id="pricing">
       <h1>Pricing</h1>
-      <div className="pricing__items d-flex justify-content-between">
+      <div className="pricing__items">
         {packages.map(pack => {
           return (
             <div className="pricing__item" key={pack.time}>
