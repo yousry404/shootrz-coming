@@ -14,4 +14,22 @@ $primary: #fe515f;
             background: #000100;
         }
     }
+    &__location {
+        
+        &__inputs {
+            width: 70%;
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+        }
+        &__input {
+            margin-bottom: 20px !important;
+        }
+    }
+    &__buttons {
+        color: $primary;
+        width: 70px !important;
+        height: 70px !important;
+        cursor: pointer;
+    }
 }

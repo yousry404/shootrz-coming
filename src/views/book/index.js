@@ -47,11 +47,11 @@ const GetStepContent = ({ step }) => {
   const [age, setAge] = React.useState("")
 
   const [packages] = React.useState([
-    { title: "Compact", price: "1000", time: "1" },
-    { title: "Standard", price: "1800", time: "2" },
-    { title: "Extended", price: "2400", time: "3" },
-    { title: "Half Day", price: "2800", time: "4" },
-    { title: "Full Day", price: "4500", time: "8" },
+    { id:1, name: "Compact", price: "1000", time: "1" },
+    { id:2, name: "Standard", price: "1800", time: "2" },
+    { id:3,name: "Extended", price: "2400", time: "3" },
+    { id:4,name: "Half Day", price: "2800", time: "4" },
+    { id:5,name: "Full Day", price: "4500", time: "8" },
   ])
   const [selectedDate, setSelectedDate] = React.useState(
     new Date("2014-08-18T21:11:54")
@@ -158,9 +158,9 @@ function HorizontalLinearStepper() {
               {<GetStepContent step={activeStep} />}
             </div>
             <div>
-              {activeStep !== 0 && <NavigateBefore onClick={handleBack} />}
+              {activeStep !== 0 && <NavigateBefore onClick={handleBack} className="book-page__buttons" />}
               {activeStep !== steps.length - 1 && (
-                <NavigateNext onClick={handleNext} className={classes.button} />
+                <NavigateNext onClick={handleNext} className="book-page__buttons" />
               )}
             </div>
           </div>
