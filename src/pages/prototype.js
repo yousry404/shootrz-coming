@@ -22,7 +22,7 @@ const Home = () => {
               Our hand-picked photographers deliver high quality photo shoots
               for set fees starting from 1000 EGP, on-demand.
             </p>
-            <Link to="/book" className="header__button">
+            <Link to="/app/book" className="header__button">
               Book Now
             </Link>
           </div>

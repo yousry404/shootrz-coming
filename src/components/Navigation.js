@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {Link} from "gatsby";
 import "bootstrap-css-only/css/bootstrap.min.css";
 
@@ -21,13 +21,13 @@ import {
 import { isLoggedIn} from "../services/auth"
 const Navigation = props => {
   const [isOpen, setIsOpen] = useState(false);
-  const [name] = useState('');
+  const [name, setName] = useState('');
   const toggle = () => setIsOpen(!isOpen);
   
-  // useEffect(() => {
-  //   if(localStorage.getItem('shootrzName'))
-  //     setName(localStorage.getItem('shootrzName'))
-  // })
+  useEffect(() => {
+    if(localStorage.getItem('shootrzName'))
+      setName(localStorage.getItem('shootrzName'))
+  },[])
   return (
     <div className="navigation">
       
@@ -37,7 +37,7 @@ const Navigation = props => {
           </Link>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
-          <Nav className="ml-auto" navbar>
+          <Nav navbar>
             <NavItem>
               
                 <Link to="/prototype" activeClassName="active">
@@ -59,9 +59,10 @@ const Navigation = props => {
             {
               isLoggedIn() ?  <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret>
-                  {name}
+                  <span className="name">{name}</span>
                 </DropdownToggle>
                 <DropdownMenu right>
+                  <DropdownItem><Link to="/app/events/">My Events</Link></DropdownItem>
                   <DropdownItem>Edit Profile</DropdownItem>
                   <DropdownItem>Logout</DropdownItem>
                 </DropdownMenu>

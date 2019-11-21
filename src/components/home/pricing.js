@@ -33,7 +33,7 @@ const Pricing = () => {
                     </ul>
                 
                 </CardBody>
-                <Link to="/book" className="pricing__item__button">Book now</Link>
+                <Link to="/app/book" className="pricing__item__button">Book now</Link>
               
             </Card>
             </div>

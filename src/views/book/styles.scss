@@ -1,0 +1,17 @@
+$primary: #fe515f;
+
+.book-page {
+    &__type {
+        &__item {
+            cursor: pointer;
+            border: 2px solid $primary;
+            margin-bottom: 20px;
+        }
+        .selected-type {
+            color: #fff;
+            border: 2px solid $primary;
+
+            background: #000100;
+        }
+    }
+}

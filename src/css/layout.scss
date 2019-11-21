@@ -15,6 +15,49 @@ $primary: #fe515f;
 .navigation {
   width: 94%;
   margin: auto;
+  .navbar-nav {
+    flex-grow: 1;
+    justify-content: flex-end;
+  }
+  nav {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+  .nav-item a {
+    font-family: "AGBold";
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+    padding: 3px;
+    &.active {
+      position: relative;
+      &::before {
+        position: absolute;
+        top: 110%;
+        left: 0;
+        right: 0;
+        bottom: -5px;
+        content: "";
+        background: $primary;
+      }
+    }
+    &:hover {
+      color: black;
+      text-decoration: none;
+    }
+    
+  }
+  .dropdown-toggle .name{
+    display: inline-block;
+    max-width: 100px;
+    overflow:hidden; 
+    white-space:nowrap; 
+    text-overflow: ellipsis;
+    line-height: 16px;
+  }
+  .nav-item + .nav-item {
+    margin-left: 8%;
+  }
   @media (max-width: 768px) {
     .navbar-brand {
       width: 60%;
@@ -22,41 +65,19 @@ $primary: #fe515f;
         width: 100%;
       }
     }
-    .navbar-nav li {
+    .navbar-nav {
+      margin: 0;
+    }
+    .nav-item {
       text-align: center;
-      margin-left: 0;
+      margin-left: 0 !important;
+    }
+    .dropdown-item {
+      text-align: center;
     }
   }
 }
-nav {
-  padding-left: 0 !important;
-  padding-right: 0 !important;
-}
-.nav-item a {
-  font-family: "AGBold";
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
-  &.active {
-    position: relative;
-    &::before {
-      position: absolute;
-      top: 110%;
-      left: 0;
-      right: 0;
-      bottom: -5px;
-      content: "";
-      background: $primary;
-    }
-  }
-  &:hover {
-    color: black;
-    text-decoration: none;
-  }
-}
-.nav-item + .nav-item {
-  margin-left: 80px;
-}
+
 .contain-header {
   display: flex;
   flex-direction: column;
