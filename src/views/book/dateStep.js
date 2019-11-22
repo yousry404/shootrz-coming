@@ -5,7 +5,9 @@ import {
     MuiPickersUtilsProvider,
     KeyboardDatePicker,
   } from "@material-ui/pickers"
-const DateStep = ({handleDateChange, selectedDate}) => (
+const DateStep = ({handleDateChange, selectedDate}) => {
+    const today = new Date();
+    return (
     <>
       <h2>When do you need the photographer?</h2>
       <MuiPickersUtilsProvider utils={DateFnsUtils}>
@@ -17,6 +19,7 @@ const DateStep = ({handleDateChange, selectedDate}) => (
           id="date-picker-inline"
           label="Date picker inline"
           value={selectedDate}
+          minDate={today}
           onChange={handleDateChange}
           KeyboardButtonProps={{
             "aria-label": "change date",
@@ -26,6 +29,6 @@ const DateStep = ({handleDateChange, selectedDate}) => (
       </MuiPickersUtilsProvider>
       
     </>
-  )
+  )}
 
 export default DateStep;
