@@ -1,13 +1,20 @@
 $primary: #fe515f;
 
 .book-page {
-    &__type {
+    &__type, &__package {
         &__item {
             cursor: pointer;
             border: 2px solid $primary;
             margin-bottom: 20px;
         }
         .selected-type {
+            color: #fff;
+            border: 2px solid $primary;
+            margin-bottom: 20px;
+
+            background: #000100;
+        }
+        .selected-package {
             color: #fff;
             border: 2px solid $primary;
             margin-bottom: 20px;
@@ -27,10 +34,31 @@ $primary: #fe515f;
             margin-bottom: 20px !important;
         }
     }
+    
     &__buttons {
         color: $primary;
         width: 70px !important;
         height: 70px !important;
         cursor: pointer;
     }
+    &__proceed, &__proceed--disabled {
+        width: 60% !important;
+        margin: auto;
+    }
+    &__proceed {
+        background: $primary !important;
+        color: #fff !important;
+        border: none;
+        &--disabled {
+            background: #ccc;
+            color: #fff;
+            cursor: not-allowed;
+
+        }
+    }
+    &__warning {
+        color: $primary;
+        font-size: 14px;
+    }
+    
 }

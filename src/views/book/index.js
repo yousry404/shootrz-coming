@@ -3,8 +3,6 @@ import { makeStyles } from "@material-ui/core/styles"
 import Stepper from "@material-ui/core/Stepper"
 import Step from "@material-ui/core/Step"
 import StepLabel from "@material-ui/core/StepLabel"
-import Button from "@material-ui/core/Button"
-import Typography from "@material-ui/core/Typography"
 
 import { NavigateBefore, NavigateNext } from "@material-ui/icons"
 import Type from "./typeStep"
@@ -13,7 +11,7 @@ import DateStep from "./dateStep"
 import PackageStep from "./packageStep"
 import { connect } from "react-redux"
 import { bindActionCreators } from "redux"
-import {getCategories} from "./actions"
+import { getCategories, getLocations } from "./actions"
 const useStyles = makeStyles(theme => ({
   root: {
     width: "90%",
@@ -44,19 +42,6 @@ function getSteps() {
 }
 
 const GetStepContent = ({ step }) => {
-  const [age, setAge] = React.useState("")
-
-  const [packages] = React.useState([
-    { id:1, name: "Compact", price: "1000", time: "1" },
-    { id:2, name: "Standard", price: "1800", time: "2" },
-    { id:3,name: "Extended", price: "2400", time: "3" },
-    { id:4,name: "Half Day", price: "2800", time: "4" },
-    { id:5,name: "Full Day", price: "4500", time: "8" },
-  ])
-  const [selectedDate, setSelectedDate] = React.useState(
-    new Date("2014-08-18T21:11:54")
-  )
-
   switch (step) {
     // case 0:
     //   return (
@@ -69,37 +54,29 @@ const GetStepContent = ({ step }) => {
     case 0:
       return <Type />
     case 1:
-      const handleChange = event => {
-        setAge(event.target.value)
-      }
-
-      return <LocationStep handleChange={handleChange} age={age} />
+      return <LocationStep />
 
     case 2:
-      const handleDateChange = date => {
-        setSelectedDate(date)
-      }
-      return (
-        <DateStep
-          handleDateChange={handleDateChange}
-          selectedDate={selectedDate}
-        />
-      )
+      return <DateStep />
 
     case 3:
-      return <PackageStep packages={packages} />
+      return <PackageStep />
     default:
       return "Unknown step"
   }
 }
-function HorizontalLinearStepper() {
+const HorizontalLinearStepper = ({ bookProps }) => {
   const classes = useStyles()
-
+  const {
+    selectedCategory,
+    selectedPackage,
+    selectedDate,
+    address,
+    selectedLocation,
+  } = bookProps
   const [activeStep, setActiveStep] = React.useState(0)
   // const [setSkipped] = React.useState(new Set())
   const steps = getSteps()
-
-  const isStepOptional = step => {}
 
   const handleNext = () => {
     setActiveStep(prevActiveStep => prevActiveStep + 1)
@@ -108,33 +85,16 @@ function HorizontalLinearStepper() {
   const handleBack = () => {
     setActiveStep(prevActiveStep => prevActiveStep - 1)
   }
-
-  // const handleSkip = () => {
-  //   if (!isStepOptional(activeStep)) {
-  //     // You probably want to guard against something like this,
-  //     // it should never occur unless someone's actively trying to break something.
-  //     throw new Error("You can't skip a step that isn't optional.")
-  //   }
-
-  //   setActiveStep(prevActiveStep => prevActiveStep + 1)
-  //   setSkipped(prevSkipped => {
-  //     const newSkipped = new Set(prevSkipped.values())
-  //     newSkipped.add(activeStep)
-  //     return newSkipped
-  //   })
-  // }
-
-  const handleReset = () => {
-    setActiveStep(0)
-  }
-
+  const isFormComplete =
+    selectedCategory &&
+    selectedPackage &&
+    selectedDate &&
+    address &&
+    selectedLocation
   return (
     <div className={classes.root}>
       <Stepper activeStep={activeStep} alternativeLabel>
         {steps.map((label, index) => {
-          if (isStepOptional(index)) {
-          }
-
           return (
             <Step key={label}>
               <StepLabel className={classes.step}>{label}</StepLabel>
@@ -143,54 +103,67 @@ function HorizontalLinearStepper() {
         })}
       </Stepper>
       <div style={{ textAlign: "center" }}>
-        {activeStep === steps.length ? (
-          <div>
-            <Typography className={classes.instructions}>
-              All steps completed - you&apos;re finished
-            </Typography>
-            <Button onClick={handleReset} className={classes.button}>
-              Reset
-            </Button>
+        <div>
+          <div className={classes.instructions}>
+            {<GetStepContent step={activeStep} />}
           </div>
-        ) : (
           <div>
-            <div className={classes.instructions}>
-              {<GetStepContent step={activeStep} />}
-            </div>
-            <div>
-              {activeStep !== 0 && <NavigateBefore onClick={handleBack} className="book-page__buttons" />}
-              {activeStep !== steps.length - 1 && (
-                <NavigateNext onClick={handleNext} className="book-page__buttons" />
-              )}
-            </div>
+            {activeStep !== 0 && (
+              <NavigateBefore
+                onClick={handleBack}
+                className="book-page__buttons"
+              />
+            )}
+            {activeStep !== steps.length - 1 && (
+              <NavigateNext
+                onClick={handleNext}
+                className="book-page__buttons"
+              />
+            )}
           </div>
-        )}
+          <div>
+            {!isFormComplete ? <p className="book-page__warning">Fill all Required Fields in order to proceed</p> : ""}
+            <button
+              disabled={!isFormComplete}
+              className={
+                isFormComplete
+                  ? "book-page__proceed form-control"
+                  : "book-page__proceed--disabled form-control"
+              }
+            >
+              Proceed to Confirm
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   )
 }
 
-const Book = ({getCategories}) => {
-  useEffect(() => {
-    getCategories()
-  }, [])
-  return (
-    <div className="book-page">
-      <HorizontalLinearStepper />
-    </div>
-  )
-}
-const mapStateToProps = ({ events }) => ({
-  loading: events.loading,
-  events: events.events,
+const mapStateToProps = ({ book }) => ({
+  book,
 })
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
       getCategories,
+      getLocations
     },
     dispatch
   )
+
+const Book = ({ getCategories, book, getLocations }) => {
+  useEffect(() => {
+    getCategories()
+    getLocations()
+  }, [])
+  return (
+    <div className="book-page">
+      <HorizontalLinearStepper bookProps={book} />
+    </div>
+  )
+}
+
 export default connect(
   mapStateToProps,
   mapDispatchToProps

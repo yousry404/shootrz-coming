@@ -5,6 +5,7 @@ import Pricing from "../components/home/pricing"
 import WhyShootrz from "../components/home/why"
 import Footer from "../components/home/footer"
 import { Link } from "gatsby"
+import "../css/style.css"
 import "../css/layout.scss"
 import SEO from "../components/seo"
 

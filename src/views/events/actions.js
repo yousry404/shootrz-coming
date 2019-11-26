@@ -1,5 +1,5 @@
 import axios from "axios"
-
+import { baseUrl } from "../../services/api"
 export const GET_EVENTS_SUCCESS = "GET_EVENTS_SUCCESS"
 export const GET_EVENTS_LOADING = "GET_EVENTS_LOADING"
 export const GET_EVENTS_FAILURE = "GET_EVENTS_FAILURE"
@@ -8,7 +8,7 @@ export const getEvents = ({ token }) => async (dispatch) => {
   try {
     dispatch({ type: GET_EVENTS_LOADING })
      const response = await axios.get(
-      "https://shootrz-api.herokuapp.com/api/events",
+      `${baseUrl}/events`,
       { headers: { Authorization: token, "Content-Type": "application/json" } }
     )
     const {
