@@ -64,7 +64,7 @@ const IndexPage = () => {
               <p className="on-demand">
                 Photographers on-demand
               </p>
-              <p className="mena">in MENA Region</p>
+              <p className="mena">in Egypt</p>
               <p className="soon">coming soon!</p>
               <p className="interested">Interested in the idea? we can notify you once we start.</p>
               <div className="subscribe">
@@ -91,6 +91,8 @@ const IndexPage = () => {
 
                 {success && <p className="result">Thank you</p>}
                 {error && <p className="result">Please try again</p>}
+                <a className="interested" href="https://photographer.shootrz.co" target="_blank">Are you a photographer? You can join from here.</a>
+
               </div>
             </div>
           </div>
@@ -103,7 +105,7 @@ const IndexPage = () => {
         </div>
       </header>
       <footer>
-        <p>&copy; All Copyrights reserved to Shootrz 2019.</p>
+        <p>&copy; All Copyrights reserved to Shootrz 2020.</p>
       </footer>
     </div>
   )

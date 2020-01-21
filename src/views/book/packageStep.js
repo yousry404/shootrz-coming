@@ -2,25 +2,27 @@ import React from "react"
 import { Row, Col } from "reactstrap"
 import {connect} from "react-redux"
 import {bindActionCreators} from "redux"
-import {selectPackage} from "./actions"
-const PackageStep = ({ packages, selectedPackage, selectPackage }) => {
-    const handleSelectPackage  = (id) => {
-        selectPackage({id})
+import {selectPackage, setActiveStep} from "./actions"
+const PackageStep = ({ packages, selectedPackage, selectPackage, setActiveStep }) => {
+    const handleSelectPackage  = (packag) => {
+        selectPackage({packag})
+        setActiveStep({ activeStep: 5 })
+
     }
     return (
   <div className="book-page__package">
-    <h2>Which package do you need?</h2>
+    <h1>Which package do you need?</h1>
 
     <Row>
       {packages && packages.map(packag => (
-        <Col sm="3" key={packag.id}>
+        <Col sm="6" key={packag.id}>
           <div
             className={
-              packag.id === selectedPackage
+              packag.id === selectedPackage.id
                 ? "selected-package"
                 : "book-page__package__item"
             }
-            onClick={() => handleSelectPackage(packag.id)}
+            onClick={() => handleSelectPackage(packag)}
           >
               <p>{packag.hours} Hours</p>
               <p>{packag.price} EGP</p>
@@ -36,6 +38,7 @@ const mapStateToProps = ({ book }) => ({
     selectedPackage: book.selectedPackage
   })
   const mapDispatchToProps = dispatch => bindActionCreators({ 
-    selectPackage
+    selectPackage,
+    setActiveStep
   },dispatch)
   export default connect(mapStateToProps, mapDispatchToProps)(PackageStep)

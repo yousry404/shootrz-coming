@@ -28,12 +28,10 @@ const Categories = () => {
             <div className="col-md-3 card-item" key={category.name}>
               <div className="card-contain">
                 <Card>
-                  <CardImg
-                    src={category.src}
-                    top
-                    height="340"
-                    alt="Card image cap"
-                  />
+                  
+                  <div style={{ backgroundImage: `url(${category.src})`, flexGrow: '1', backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundPosition: 'center 35%'}}>
+                 
+                  </div>
                   <div className="card__body">
                     <CardTitle className="card__title">
                       {category.name}

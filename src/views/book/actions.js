@@ -9,30 +9,62 @@ export const GET_LOCATIONS_LOADING = "GET_LOCATIONS_LOADING"
 export const GET_LOCATIONS_FAILURE = "GET_LOCATIONS_FAILURE"
 
 export const SELECT_CATEGORY = "SELECT_CATEGORY"
+export const SELECT_TYPE = "SELECT_TYPE"
 export const SELECT_PACKAGE = "SELECT_PACKAGE"
 export const SELECT_LOCATION = "SELECT_LOCATION"
 export const SELECT_DATE = "SELECT_DATE"
 export const CHANGE_ADDRESS = "CHANGE_ADDRESS"
-export const selectCategory = ({ id }) => ({
+export const SET_ACTIVE_STEP = "SET_ACTIVE_STEP"
+export const BOOK_EVENT_LOADING = "BOOK_EVENT_LOADING"
+export const BOOK_EVENT_SUCCESS = "BOOK_EVENT_SUCCESS"
+export const BOOK_EVENT_FAILURE = "BOOK_EVENT_FAILURE"
+export const CHANGE_HOUR = "CHANGE_HOUR"
+export const CHANGE_MINUTE = "CHANGE_MINUTE"
+export const CHANGE_AM = "CHANGE_AM"
+export const ADD_CONFIRM_ERROR = "ADD_CONFIRM_ERROR"
+export const selectType = ({ shootType }) => ({
+  type: SELECT_TYPE,
+  shootType,
+})
+export const selectCategory = ({ category }) => ({
   type: SELECT_CATEGORY,
-  id,
+  category,
 })
-export const selectPackage = ({ id }) => ({
+export const selectPackage = ({ packag }) => ({
   type: SELECT_PACKAGE,
-  id,
+  package: packag,
 })
-export const selectLocation = ({ id }) => ({
+export const selectLocation = ({ location }) => ({
   type: SELECT_LOCATION,
-  id,
+  location,
 })
 export const selectDate = ({ date }) => ({
   type: SELECT_DATE,
   date,
 })
-
-export const changeAddress = ({address}) => ({
+export const changeAddress = ({ address }) => ({
   type: CHANGE_ADDRESS,
-  address
+  address,
+})
+export const changeHour = ({ hour }) => ({
+  type: CHANGE_HOUR,
+  hour,
+})
+export const changeMintue = ({ minute }) => ({
+  type: CHANGE_MINUTE,
+  minute,
+})
+export const changeAm = ({ am }) => ({
+  type: CHANGE_AM,
+  am,
+})
+export const addConfirmFormError = ({isError}) => ({
+  type: ADD_CONFIRM_ERROR,
+  isError
+})
+export const setActiveStep = ({ activeStep }) => ({
+  type: SET_ACTIVE_STEP,
+  activeStep
 })
 export const getCategories = () => async dispatch => {
   try {
@@ -57,9 +89,7 @@ export const getCategories = () => async dispatch => {
 export const getLocations = () => async dispatch => {
   try {
     dispatch({ type: GET_LOCATIONS_LOADING })
-    const response = await axios.get(
-      `${baseUrl}/locations`
-    )
+    const response = await axios.get(`${baseUrl}/locations`)
     const {
       data: { message, locations },
       status,
@@ -74,5 +104,35 @@ export const getLocations = () => async dispatch => {
       type: GET_LOCATIONS_FAILURE,
       message: "Error in fetching locations",
     })
+  }
+}
+
+export const bookEvent = ({ token, packageId, locationId, address, date, typeId }) => async dispatch => {
+  try {
+    dispatch({ type: BOOK_EVENT_LOADING })
+    const response = await axios.post(
+      `${baseUrl}/make-event`,
+      {
+        packageId: packageId,
+        typeId,
+        locationId,
+        address,
+        date
+      },
+      { headers: { Authorization: token, "Content-Type": "application/json" } }
+    )
+    const {
+      data: { message },
+      status,
+    } = response
+    if (status !== 200) {
+      dispatch({ type: BOOK_EVENT_FAILURE, message })
+    } else {
+        dispatch({ type: BOOK_EVENT_SUCCESS })
+    }
+  } catch (e) {
+    console.log(e)
+    dispatch({ type: BOOK_EVENT_FAILURE, message: "error in booking Event" })
+
   }
 }

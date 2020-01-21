@@ -11,7 +11,8 @@ import DateStep from "./dateStep"
 import PackageStep from "./packageStep"
 import { connect } from "react-redux"
 import { bindActionCreators } from "redux"
-import { getCategories, getLocations } from "./actions"
+import ConfirmationStep from "./confirmationStep"
+import { getCategories, getLocations, selectType, setActiveStep } from "./actions"
 const useStyles = makeStyles(theme => ({
   root: {
     width: "90%",
@@ -37,35 +38,51 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-function getSteps() {
-  return ["Photography Type", "Location", "Date Time", "Package"]
-}
-
-const GetStepContent = ({ step }) => {
+const GetStepContent = ({ step, handleSelectType, bookProps }) => {
   switch (step) {
-    // case 0:
-    //   return (
-    //     <>
-    //       <h2>Is your shoot for business or personal?</h2>
-    //       <button>Business</button>
-    //       <button>Personal</button>
-    //     </>
-    //   )
     case 0:
-      return <Type />
+      return (
+        <div className="book-page__business">
+          <h2>Is your shoot for business or personal?</h2>
+          <div
+            className={
+              bookProps.selectedType === "business"
+                ? "book-page__business__option--selected"
+                : "book-page__business__option"
+            }
+            onClick={() => handleSelectType("business")}
+          >
+            Business
+          </div>
+          <div
+            className={
+              bookProps.selectedType === "personal"
+                ? "book-page__business__option--selected"
+                : "book-page__business__option"
+            }
+            onClick={() => handleSelectType("personal")}
+          >
+            Personal
+          </div>
+        </div>
+      )
     case 1:
+      return <Type />
+    case 2:
       return <LocationStep />
 
-    case 2:
+    case 3:
       return <DateStep />
 
-    case 3:
+    case 4:
       return <PackageStep />
+    case 5: 
+      return <ConfirmationStep />
     default:
       return "Unknown step"
   }
 }
-const HorizontalLinearStepper = ({ bookProps }) => {
+const HorizontalLinearStepper = ({ bookProps, selectType, setActiveStep }) => {
   const classes = useStyles()
   const {
     selectedCategory,
@@ -73,18 +90,26 @@ const HorizontalLinearStepper = ({ bookProps }) => {
     selectedDate,
     address,
     selectedLocation,
+    formSubmitted,
+    error,
+    message,
+    activeStep
   } = bookProps
-  const [activeStep, setActiveStep] = React.useState(0)
+  // const [activeStep, setActiveStep] = React.useState(0)
   // const [setSkipped] = React.useState(new Set())
-  const steps = getSteps()
+  const steps = ["Type", "Photography Type", "Location", "Date Time", "Package"]
 
-  const handleNext = () => {
-    setActiveStep(prevActiveStep => prevActiveStep + 1)
-  }
+
+
 
   const handleBack = () => {
-    setActiveStep(prevActiveStep => prevActiveStep - 1)
+    setActiveStep({ activeStep: activeStep - 1})
   }
+  const handleSelectType = type => {
+    setActiveStep({ activeStep: activeStep + 1})
+    selectType({ shootType: type })
+  }
+ 
   const isFormComplete =
     selectedCategory &&
     selectedPackage &&
@@ -93,7 +118,8 @@ const HorizontalLinearStepper = ({ bookProps }) => {
     selectedLocation
   return (
     <div className={classes.root}>
-      <Stepper activeStep={activeStep} alternativeLabel>
+      <div className="book-page__stepper">
+      {activeStep < 5 && <Stepper activeStep={activeStep} alternativeLabel>
         {steps.map((label, index) => {
           return (
             <Step key={label}>
@@ -102,37 +128,44 @@ const HorizontalLinearStepper = ({ bookProps }) => {
           )
         })}
       </Stepper>
+}
+      </div>
       <div style={{ textAlign: "center" }}>
-        <div>
+        <div className="book-page__steps">
           <div className={classes.instructions}>
-            {<GetStepContent step={activeStep} />}
+            {
+              <GetStepContent
+                step={activeStep}
+                handleSelectType={handleSelectType}
+                bookProps={bookProps}
+              />
+            }
           </div>
-          <div>
+          <div className="book-page__before-button">
             {activeStep !== 0 && (
               <NavigateBefore
                 onClick={handleBack}
                 className="book-page__buttons"
               />
             )}
-            {activeStep !== steps.length - 1 && (
+            {/* {activeStep !== steps.length - 1 && (
               <NavigateNext
                 onClick={handleNext}
                 className="book-page__buttons"
               />
-            )}
+            )} */}
           </div>
           <div>
-            {!isFormComplete ? <p className="book-page__warning">Fill all Required Fields in order to proceed</p> : ""}
-            <button
-              disabled={!isFormComplete}
-              className={
-                isFormComplete
-                  ? "book-page__proceed form-control"
-                  : "book-page__proceed--disabled form-control"
-              }
-            >
-              Proceed to Confirm
-            </button>
+            {!isFormComplete }
+          {/* {( selectedCategory || selectedPackage || selectedLocation || address) && <p style={{width: '55%', textAlign: 'left', margin: 'auto', fontSize: '16px' }}>{(Object.keys(selectedCategory).length > 0 && selectedCategory.constructor === Object) && selectedCategory.name + " > "}{ selectedLocation && selectedLocation.name}{ address && ", " + address}</p>} */}
+          </div>
+          <div>
+            {formSubmitted &&!error &&(<div className="alert alert-success" role="alert">
+              Your Event is placed successfully
+            </div>)}
+            {formSubmitted && error &&(<div className="alert alert-danger" role="alert">
+              {message}
+            </div>)}
           </div>
         </div>
       </div>
@@ -147,19 +180,25 @@ const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
       getCategories,
-      getLocations
+      getLocations,
+      selectType,
+      setActiveStep
     },
     dispatch
   )
 
-const Book = ({ getCategories, book, getLocations }) => {
+const Book = ({ getCategories, book, getLocations, selectType, setActiveStep }) => {
   useEffect(() => {
     getCategories()
     getLocations()
   }, [])
   return (
     <div className="book-page">
-      <HorizontalLinearStepper bookProps={book} />
+      <HorizontalLinearStepper
+        bookProps={book}
+        selectType={selectType}
+        setActiveStep={setActiveStep}
+      />
     </div>
   )
 }

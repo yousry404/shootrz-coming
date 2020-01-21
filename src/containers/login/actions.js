@@ -1,13 +1,15 @@
 import axios from "axios"
 import { setUser } from "../../services/auth"
 import { navigate } from "gatsby"
+import { baseUrl } from "../../services/api"
+
 // action types
 export const CHANGE_EMAIL = "LOGIN::CHANGE_EMAIL"
 export const CHANGE_PASSWORD = "LOGIN::CHANGE_PASSWORD"
 
-export const SUBMIT_FORM_SUCCESS = "SUBMIT_FORM_SUCCESS"
-export const SUBMIT_FORM_ERROR = "SUBMIT_FORM_ERROR"
-
+export const SUBMIT_FORM_SUCCESS = "LOGIN::SUBMIT_FORM_SUCCESS"
+export const SUBMIT_FORM_ERROR = "LOGIN::SUBMIT_FORM_ERROR"
+export const CHANGE_ERROR = "LOGIN::CHANGE_ERROR "
 export const changeEmail = value => {
   return {
     type: CHANGE_EMAIL,
@@ -22,9 +24,14 @@ export const changePassword = value => {
   }
 }
 
+export const changeError = (errorType, isError) => ({
+  type: CHANGE_ERROR,
+  errorType,
+  isError,
+})
 export const submitForm = ({ email, password }) => async dispatch => {
   try {
-    const response = await axios.post("https://shootrz-api.herokuapp.com/api/login", {
+    const response = await axios.post(`${baseUrl}/login`, {
       email,
       password,
     })

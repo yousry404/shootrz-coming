@@ -1,58 +1,99 @@
-import React from 'react';
+import React from "react"
 import DateFnsUtils from "@date-io/date-fns"
-import {connect} from "react-redux"
-import {bindActionCreators} from "redux"
-import {selectDate} from "./actions"
-import {
-    MuiPickersUtilsProvider,
-    KeyboardDatePicker,
-    KeyboardTimePicker
-  } from "@material-ui/pickers"
-const DateStep = ({selectDate, selectedDate}) => {
-    const today = new Date();
-    const handleDateChange = (date) => {
-        selectDate({date})
-    }
-   
-    return (
-    <>
-      <h2>When do you need the photographer?</h2>
+import { connect } from "react-redux"
+import { bindActionCreators } from "redux"
+import { selectDate, setActiveStep } from "./actions"
+import { MuiPickersUtilsProvider, Calendar } from "@material-ui/pickers"
+import Select from "@material-ui/core/Select"
+import MenuItem from "@material-ui/core/MenuItem"
+import InputLabel from "@material-ui/core/InputLabel"
+import FormControl from "@material-ui/core/FormControl"
+import { Row, Col } from "reactstrap"
+
+const DateStep = ({ selectDate, selectedDate, setActiveStep }) => {
+  const today = new Date()
+  const handleDateChange = date => {
+    selectDate({ date })
+  }
+  const handleClickNext = () => {
+    setActiveStep({ activeStep: 4 })
+  }
+  return (
+    <div className="book-page__date">
+      <h1>When do you need the photographer?</h1>
       <MuiPickersUtilsProvider utils={DateFnsUtils}>
-        <KeyboardDatePicker
-          disableToolbar
-          variant="inline"
-          format="MM/dd/yyyy"
-          margin="normal"
-          id="date-picker-inline"
-          label="Date picker inline"
-          value={selectedDate}
-          minDate={today}
-          onChange={handleDateChange}
-          KeyboardButtonProps={{
-            "aria-label": "change date",
-          }}
-        />
-         <KeyboardTimePicker
-          margin="normal"
-          id="time-picker"
-          label="Time picker"
-          value={selectedDate}
-          onChange={handleDateChange}
-          KeyboardButtonProps={{
-            'aria-label': 'change time',
-          }}
-        />
-       
+        <Row>
+          <Col sm="6">
+            <h1>Date</h1>
+
+            <Calendar
+              onChange={handleDateChange}
+              date={selectedDate}
+              minDate={today}
+            />
+          </Col>
+          <Col sm="6" className="d-flex flex-column">
+            <h1>Time</h1>
+            <FormControl variant="outlined">
+              <InputLabel id="demo-simple-select-filled-label">Hour</InputLabel>
+              <Select value>
+                {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map(i => (
+                  <MenuItem value={i}>{i}</MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+            <FormControl variant="outlined">
+              <InputLabel id="demo-simple-select-filled-label">Minute</InputLabel>
+            <Select>
+              {[
+                "00",
+                "05",
+                "10",
+                "15",
+                "20",
+                "25",
+                "30",
+                "35",
+                "40",
+                "45",
+                "50",
+                "55",
+              ].map(i => (
+                <MenuItem value={i}>{i}</MenuItem>
+              ))}
+            </Select>
+            </FormControl>
+            <FormControl variant="outlined">
+            <Select defaultValue="pm">
+              <MenuItem value="am">am</MenuItem>
+              <MenuItem value="pm">pm</MenuItem>
+            </Select>
+            </FormControl>
+            <button
+              className="book-page__location__next mt-3"
+              onClick={handleClickNext}
+            >
+              Next
+            </button>
+          </Col>
+        </Row>
       </MuiPickersUtilsProvider>
-      
-    </>
-  )}
+    </div>
+  )
+}
 
 const mapStateToProps = ({ book }) => ({
-    selectedDate: book.selectedDate,
-  })
-  const mapDispatchToProps = dispatch => bindActionCreators({ 
-    selectDate
-  },dispatch)
-  export default connect(mapStateToProps, mapDispatchToProps)(DateStep)
-
+  selectedDate: book.selectedDate,
+})
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(
+    {
+      selectDate,
+      setActiveStep,
+    },
+    dispatch
+  )
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(DateStep)

@@ -1,64 +1,186 @@
 $primary: #fe515f;
 
 .book-page {
-    &__type, &__package {
-        &__item {
-            cursor: pointer;
-            border: 2px solid $primary;
-            margin-bottom: 20px;
-        }
-        .selected-type {
-            color: #fff;
-            border: 2px solid $primary;
-            margin-bottom: 20px;
+  &__stepper {
+    width: 60%;
+    margin: auto;
+    @media (max-width: 768px) {
+      width: 100%;
+      margin: 0;
+      .MuiStepper-root {
+        padding: 0 !important;
+      }
+    }
+  }
+  &__steps {
+    position: relative;
+    margin: auto;
+    width: 80%;
+    @media (max-width: 768px) {
+      width: 100%;
+     
+    }
+  }
+  &__before-button {
+    position: absolute;
+    left: 10%;
+    top: 30%;
+    @media (max-width: 768px) {
+      left: 0;
+      
+    }
+  }
+  &__business {
+    font-family: "AGBold";
+    h2 {
+      font-family: "AGBold";
+      font-size: 22px;
+    }
+    &__option,
+    &__option--selected {
+      width: 55%;
+      margin: 20px auto;
+      padding: 12px 0;
+      @media (max-width: 768px) {
+        width: 70%;
+      }   
+    }
+    &__option {
+      cursor: pointer;
 
-            background: #000100;
-        }
-        .selected-package {
-            color: #fff;
-            border: 2px solid $primary;
-            margin-bottom: 20px;
+      border: 3px solid #000100;
+      &--selected {
+        border: 3px solid $primary;
+      }
+    }
+  }
 
-            background: #000100;
-        }
+  &__type,
+  &__package {
+    width: 55%;
+    margin: auto;
+    @media (max-width: 768px) {
+      width: 65%;
+    } 
+    h1 {
+      font-family: "AGBold";
+      font-size: 22px;
     }
-    &__location {
-        
-        &__inputs {
-            width: 70%;
-            margin: auto;
-            display: flex;
-            flex-direction: column;
-        }
-        &__input {
-            margin-bottom: 20px !important;
-        }
+    &__item {
+      cursor: pointer;
+      border: 3px solid #000100;
+      margin-bottom: 20px;
+      font-family: "AGBold";
+      padding: 12px 0;
     }
-    
-    &__buttons {
-        color: $primary;
-        width: 70px !important;
-        height: 70px !important;
-        cursor: pointer;
+    .selected-type {
+      border: 3px solid $primary;
+      margin-bottom: 20px;
+      font-family: "AGBold";
+      padding: 12px 0;
     }
-    &__proceed, &__proceed--disabled {
-        width: 60% !important;
-        margin: auto;
+    .selected-package {
+      border: 3px solid $primary;
+      margin-bottom: 20px;
+      font-family: "AGBold";
+      padding: 12px 0;
     }
-    &__proceed {
-        background: $primary !important;
-        color: #fff !important;
-        border: none;
-        &--disabled {
-            background: #ccc;
-            color: #fff;
-            cursor: not-allowed;
-
-        }
+  }
+  &__location {
+    h1 {
+      font-family: "AGBold";
+      font-size: 22px;
     }
-    &__warning {
-        color: $primary;
+    &__inputs {
+      width: 55%;
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+      input,
+      .MuiMenu-list {
+        font-family: "AGBold" !important;
         font-size: 14px;
+      }
+      label {
+        font-family: "AGRegular" !important;
+      }
     }
-    
+    &__next {
+      background: $primary;
+      color: #fff;
+      font-family: "AGBold" !important;
+      cursor: pointer;
+      padding: 10px 0;
+    }
+    &__input {
+      margin-bottom: 20px !important;
+    }
+  }
+  &__confirm {
+    width: 55%;
+    margin: 50px auto 0;
+    text-align: left;
+    @media (max-width: 768px) {
+      text-align: center;
+    }
+    &__border {
+      border: 5px solid #000100;
+      padding: 10px;
+      font-size: 14px;
+      @media (max-width: 768px) {
+        text-align: left;
+      }
+    }
+    h1 {
+      font-family: "AGBold";
+      font-size: 22px;
+    }
+    &__button {
+      background: $primary;
+      color: #fff;
+      font-family: "AGBold" !important;
+      cursor: pointer;
+      text-align: center;
+      padding: 10px 0;
+      width: 60%;
+    }
+  }
+
+  &__date {
+    width: 55%;
+    margin: auto;
+    @media (max-width: 768px) {
+      width: 70%;
+    } 
+
+    h1 {
+      font-family: "AGBold";
+      font-size: 22px;
+    }
+  }
+  &__buttons {
+    color: $primary;
+    width: 70px !important;
+    height: 70px !important;
+    cursor: pointer;
+  }
+  &__proceed,
+  &__proceed--disabled {
+    width: 60% !important;
+    margin: auto;
+  }
+  &__proceed {
+    background: $primary !important;
+    color: #fff !important;
+    border: none;
+    &--disabled {
+      background: #ccc;
+      color: #fff;
+      cursor: not-allowed;
+    }
+  }
+  &__warning {
+    color: $primary;
+    font-size: 14px;
+  }
 }

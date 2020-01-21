@@ -189,7 +189,7 @@ footer {
     margin: 0;
   }
 
-  .row {
+  .page-container .row {
     display: flex;
     flex-direction: column-reverse;
   }

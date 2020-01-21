@@ -6,6 +6,11 @@
     padding-top: 100px;
     &__header{
         text-align: center;
+        font-size: 24px;
+        width: 50%;
+        margin: auto;
+        color: #747474;
+        font-family: 'AGLight';
     }
 
     &__form {
@@ -14,13 +19,25 @@
         align-items: center;
     }
     &__email, &__password {
-        width: 50%;
+        width: 40%;
     }
     &__submit {
         color: #fff;
-        background: #fe515f;
+        background: #0E0E0E;
         border: 0;
-        padding: 5px 10px;
-        border-radius: 5px;
+        padding: 8px 15px;
+        border-radius: 2px;
+        font-size: 16px;
+    }
+    &__signup {
+        font-size: 16px;
+        a {
+            color: #0E0E0E;
+                cursor: pointer;
+                text-decoration: underline;
+            &:hover {
+                color: #0E0E0E;
+            }
+        }
     }
 }

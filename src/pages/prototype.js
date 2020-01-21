@@ -8,6 +8,8 @@ import { Link } from "gatsby"
 import "../css/style.css"
 import "../css/layout.scss"
 import SEO from "../components/seo"
+import camera from "../images/shootrz-photo.webp"
+
 
 const Home = () => {
   return (
@@ -16,6 +18,7 @@ const Home = () => {
       <Layout>
         <div className="contain-header">
           <div className="header">
+            <div>
             <h1>
               Book a professional photographer at an affordable price in Egypt.
             </h1>
@@ -26,6 +29,14 @@ const Home = () => {
             <Link to="/app/book" className="header__button">
               Book Now
             </Link>
+            </div>
+            <div className="header__camera">
+              <div className="header__camera__image">
+                <img  src={camera} alt="camera" />
+
+              </div>
+            </div>
+            
           </div>
         </div>
 

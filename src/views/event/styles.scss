@@ -1,0 +1,43 @@
+$primary: #fe515f;
+
+.event-page{
+    &__header {
+        margin-top: 40px;
+        position: relative;;
+        h1 {
+          font-family: "AGBold";
+          font-size: 32px;
+        }
+        &__new {
+          color: #fff;
+          font-family: "AGBold";
+          background: $primary;
+          padding: 5px 15px;
+          line-height: 37px;
+          &:hover {
+            color: #fff;
+            text-decoration: none;
+          }
+        }
+        &__before {
+            position: absolute;
+            left: -60px;
+            color: $primary ;
+            svg {
+                font-size: 80px;
+            }
+            &:hover {
+                color: $primary;
+                text-decoration: none;
+              }
+        }
+    }
+    &__payment {
+        text-align: center;
+        padding-top: 50px;
+        h1 {
+            color: #ccc;
+        }
+    }
+    
+}

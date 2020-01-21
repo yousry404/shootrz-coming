@@ -7,6 +7,7 @@ import { getEvents } from "./actions"
 import { makeStyles } from "@material-ui/core/styles"
 import CircularProgress from "@material-ui/core/CircularProgress"
 import { Link } from "gatsby"
+import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -21,7 +22,13 @@ const EventsList = ({ events }) =>
   events.length > 0 ? (
     <Row>
       {events.map(event => (
-        <Col>{event.address}</Col>
+
+        <Col md={6}>
+        <p>{event.address}</p>
+        <Link to={`/app/event/${event.id}`}>check event</Link>
+
+        </Col>
+
       ))}
     </Row>
   ) : (
@@ -55,6 +62,10 @@ const Events = ({ events, getEvents, loading }) => {
                 </div>
               ) : (
                 <Container>
+                  <div className="d-flex justify-content-between events-page__header-full">
+                    <h1>My Shoots</h1>
+                    <Link to="/app/book"><AddCircleOutlineIcon /> New booking</Link>
+                  </div>
                   <EventsList events={events} />
                 </Container>
               )

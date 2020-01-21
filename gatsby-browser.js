@@ -9,6 +9,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import "./src/css/layout.scss"
 import "./src/containers/login/index.scss"
 import "./src/views/events/styles.scss"
+import "./src/views/event/styles.scss"
 import "./src/views/book/styles.scss"
 
 import "./src/css/typography.css";

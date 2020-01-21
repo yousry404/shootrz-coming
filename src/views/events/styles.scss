@@ -1,27 +1,46 @@
 $primary: #fe515f;
 
 .events-page {
-    display: flex;
-    flex-direction: column;
-    height: 400px;
-    justify-content: center;
-&__header {
+  // display: flex;
+  // flex-direction: column;
+  // height: 400px;
+  // justify-content: center;
+  
+  &__header {
     flex-grow: 1;
     margin-top: 50px;
     display: flex;
     flex-direction: column;
-  &__button {
-    font-family: "AGBold";
-    font-size: 30px;
-    color: black;
-    text-decoration: none;
-    border: 5px solid $primary;
-    align-self: center;
-    padding: 15px 30px;
-    &:hover {
+    &__button {
+      font-family: "AGBold";
+      font-size: 30px;
       color: black;
       text-decoration: none;
+      border: 5px solid $primary;
+      align-self: center;
+      padding: 15px 30px;
+      &:hover {
+        color: black;
+        text-decoration: none;
+      }
     }
   }
-}
+  &__header-full {
+    margin-top: 40px;
+    h1 {
+      font-family: "AGBold";
+      font-size: 32px;
+    }
+    a {
+      color: #fff;
+      font-family: "AGBold";
+      background: $primary;
+      padding: 5px 15px;
+      line-height: 37px;
+      &:hover {
+        color: #fff;
+        text-decoration: none;
+      }
+    }
+  }
 }

@@ -36,7 +36,7 @@ $primary: #fe515f;
         top: 110%;
         left: 0;
         right: 0;
-        bottom: -5px;
+        bottom: -7px;
         content: "";
         background: $primary;
       }
@@ -82,17 +82,20 @@ $primary: #fe515f;
   display: flex;
   flex-direction: column;
   .header {
-    width: 84%;
+    width: 100%;
     margin: auto;
+    padding-left: 10%;
     flex: 1;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     h1 {
       font-size: 50px;
       width: 60%;
       font-family: "AGBold";
-      margin-top: 50px;
+      margin-top: 80px;
+      position: relative;
+      margin-right: -400px;
+      width: 110%;
     }
     p {
       font-size: 25px;
@@ -100,13 +103,24 @@ $primary: #fe515f;
       font-family: "AGLight";
       margin-bottom: 30px;
     }
-
+    &__camera {
+      background: $primary;
+      display: flex;
+      justify-content: center;
+      &__image {
+        width: 80%;
+        margin-top: 50px;
+        img {
+          width: 100%;
+        }
+      }
+    }
     .header__button {
       font-family: "AGBold";
-      font-size: 30px;
+      font-size: 20px;
       color: black;
       text-decoration: none;
-      border: 5px solid $primary;
+      border: 4px solid $primary;
       align-self: flex-start;
       padding: 15px 30px;
       &:hover {
@@ -136,7 +150,7 @@ $primary: #fe515f;
 }
 
 .contain {
-  width: 84%;
+  width: 80%;
   margin: auto;
 }
 
@@ -178,9 +192,10 @@ $primary: #fe515f;
 
 .categories {
   padding-bottom: 90px;
+  margin-top: 50px;
   .card-title {
     font-family: "AGBold";
-    font-size: 20px;
+    font-size: 16px;
   }
   .card-contain {
     .card-img-top {
@@ -190,7 +205,7 @@ $primary: #fe515f;
     height: 100%;
   }
   .card {
-    height: 100%;
+    height: 300px;
   }
   .card-item {
     margin-bottom: 80px;
@@ -199,8 +214,8 @@ $primary: #fe515f;
   .card__body {
     border: 5px solid $primary;
     padding: 10px;
-    min-height: 80px;
-    height: 100%;
+    min-height: 70px;
+    height: 40px;
   }
 }
 .footer {
@@ -213,12 +228,13 @@ $primary: #fe515f;
   p {
     font-family: "AGRegular";
     font-size: 14px;
+    margin-bottom: 15px;
   }
   a {
     background: #fff;
     color: $primary;
     font-family: "AGBold";
-    font-size: 24px;
+    font-size: 18px;
     padding: 12px 18px;
     &:hover {
       background: #fff;
@@ -227,7 +243,7 @@ $primary: #fe515f;
     }
   }
   img {
-    margin: 20px;
+    margin: 30px 0 16px;
   }
 }
 .copy {
@@ -239,18 +255,19 @@ section {
   h1 {
     text-align: center;
     font-family: "AGBold";
-    font-size: 30px;
+    font-size: 26px;
+    margin-bottom: 30px;
   }
 }
 .pricing {
   padding-bottom: 50px;
   .card-title {
     font-family: "AGBold";
-    font-size: 30px;
+    font-size: 20px;
   }
   .card-subtitle {
     font-family: "AGSuper";
-    font-size: 40px;
+    font-size: 30px;
   }
   .card-body {
     padding: 5px;
@@ -258,11 +275,12 @@ section {
   ul {
     list-style: none;
     padding: 0;
+    margin: 0;
   }
   li {
     text-decoration: none;
     font-family: "AGRegular";
-    font-size: 20px;
+    font-size: 14px;
   }
 }
 .pricing__items {
@@ -277,6 +295,10 @@ section {
 }
 .pricing__item {
   border: 5px solid $primary;
+  flex-grow: 1;
+}
+.pricing__item + .pricing__item {
+  margin-left: 10px;
 }
 .pricing__item__button {
   display: block;
@@ -300,6 +322,8 @@ section {
   &__items {
     display: flex;
     justify-content: space-between;
+    text-align: center;
+    padding-top: 20px;
   }
   .card {
     flex: 1;
