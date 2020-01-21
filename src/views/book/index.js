@@ -157,7 +157,7 @@ const HorizontalLinearStepper = ({ bookProps, selectType, setActiveStep }) => {
           </div>
           <div>
             {!isFormComplete }
-          {/* {( selectedCategory || selectedPackage || selectedLocation || address) && <p style={{width: '55%', textAlign: 'left', margin: 'auto', fontSize: '16px' }}>{(Object.keys(selectedCategory).length > 0 && selectedCategory.constructor === Object) && selectedCategory.name + " > "}{ selectedLocation && selectedLocation.name}{ address && ", " + address}</p>} */}
+          {( selectedCategory || selectedPackage || selectedLocation || address) && <p style={{width: '55%', textAlign: 'left', margin: 'auto', fontSize: '16px' }}>{(Object.keys(selectedCategory).length > 0 && selectedCategory.constructor === Object) && selectedCategory.name + " > "}{ selectedLocation && selectedLocation.name}{ address && ", " + address}</p>}
           </div>
           <div>
             {formSubmitted &&!error &&(<div className="alert alert-success" role="alert">
