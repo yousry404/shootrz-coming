@@ -91,7 +91,7 @@ const IndexPage = () => {
 
                 {success && <p className="result">Thank you</p>}
                 {error && <p className="result">Please try again</p>}
-                <a className="interested" href="https://photographer.shootrz.co" target="_blank">Are you a photographer? You can join from here.</a>
+                <a className="interested" href="https://photographer.shootrz.co/app/signup" target="_blank">Are you a photographer? You can join from here.</a>
 
               </div>
             </div>
