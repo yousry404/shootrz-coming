@@ -18,7 +18,7 @@ const Home = () => {
       <Layout>
         <div className="contain-header">
           <div className="header">
-            <div>
+            <div className="header__content">
             <h1>
               Book a professional photographer at an affordable price in Egypt.
             </h1>

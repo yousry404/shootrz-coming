@@ -88,6 +88,11 @@ $primary: #fe515f;
     flex: 1;
     display: flex;
     justify-content: center;
+    @media (max-width: 768px) {
+      flex-direction: column-reverse;
+      padding: 0;
+    }
+    
     h1 {
       font-size: 50px;
       width: 60%;
@@ -102,6 +107,11 @@ $primary: #fe515f;
       width: 45%;
       font-family: "AGLight";
       margin-bottom: 30px;
+    }
+    &__content {
+      @media (max-width: 768px) {
+        padding: 0 10%;
+      }
     }
     &__camera {
       background: $primary;
