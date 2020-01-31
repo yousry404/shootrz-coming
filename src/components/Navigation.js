@@ -39,12 +39,6 @@ const Navigation = props => {
         <Collapse isOpen={isOpen} navbar>
           <Nav navbar>
             <NavItem>
-              
-                <Link to="/prototype" activeClassName="active">
-                 How it works
-                </Link>
-            </NavItem>
-            <NavItem>
                 <Link to="/prototype/#pricing" activeClassName="active">
                   Pricing
                 </Link>
