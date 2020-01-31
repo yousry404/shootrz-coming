@@ -10,6 +10,8 @@ import {
 import format from "date-fns/format"
 import addHours from "date-fns/addHours"
 import CreateIcon from "@material-ui/icons/Create"
+import setHours from 'date-fns/setHours'
+import setMinutes from 'date-fns/setMinutes'
 
 const OrderConfirmation = ({
   address,
@@ -21,6 +23,9 @@ const OrderConfirmation = ({
   addConfirmFormError,
   confirmFormError,
   bookEvent,
+  hour,
+  minute,
+  am
 }) => {
   const handleClickDate = () => {
     setActiveStep({ activeStep: 3 })
@@ -47,6 +52,9 @@ const OrderConfirmation = ({
         locationId: selectedLocation.id,
         address,
         date: selectedDate,
+        hour,
+        minute,
+        am
       })
     }
   }
@@ -55,6 +63,8 @@ const OrderConfirmation = ({
     lineHeight: "16px",
     cursor: "pointer",
   }
+  selectedDate = setHours(selectedDate, am === "am" ? hour: hour + 12)
+  selectedDate = setMinutes(selectedDate, parseInt(minute))
   return (
     <div className="book-page__confirm">
       <h1>Order Confirmation</h1>
@@ -107,6 +117,9 @@ const mapStateToProps = ({
     address,
     selectedCategory,
     confirmFormError,
+    hour,
+    minute,
+    am
   },
 }) => ({
   selectedPackage,
@@ -115,6 +128,9 @@ const mapStateToProps = ({
   address,
   selectedCategory,
   confirmFormError,
+  hour,
+  minute,
+  am
 })
 const mapDispatchToProps = dispatch =>
   bindActionCreators(

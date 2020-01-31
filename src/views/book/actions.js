@@ -1,5 +1,7 @@
 import axios from "axios"
 import { baseUrl } from "../../services/api"
+import setHours from 'date-fns/setHours'
+import setMinutes from 'date-fns/setMinutes'
 export const GET_CATEGORIES_SUCCESS = "GET_CATEGORIES_SUCCESS"
 export const GET_CATEGORIES_LOADING = "GET_CATEGORIES_LOADING"
 export const GET_CATEGORIES_FAILURE = "GET_CATEGORIES_FAILURE"
@@ -107,9 +109,11 @@ export const getLocations = () => async dispatch => {
   }
 }
 
-export const bookEvent = ({ token, packageId, locationId, address, date, typeId }) => async dispatch => {
+export const bookEvent = ({ token, packageId, locationId, address, date,hour, minute, am, typeId }) => async dispatch => {
   try {
     dispatch({ type: BOOK_EVENT_LOADING })
+    date = setHours(date, am === "am" ? hour: hour + 12)
+    date = setMinutes(date, parseInt(minute))
     const response = await axios.post(
       `${baseUrl}/make-event`,
       {

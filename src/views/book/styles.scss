@@ -4,6 +4,11 @@ $primary: #fe515f;
   &__stepper {
     width: 60%;
     margin: auto;
+    .MuiTypography-body2 {
+      font-family: "AGRegular";
+      font-size: 14px;
+
+    }
     @media (max-width: 768px) {
       width: 100%;
       margin: 0;

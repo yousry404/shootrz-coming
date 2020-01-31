@@ -34,7 +34,7 @@ const initial_state = {
   selectedDate: new Date(),
   hour: 1,
   minute: '00',
-  am: 'am', 
+  am: 'pm', 
   packages: [],
   selectedPackage: {},
   formSubmitted: false,
