@@ -91,7 +91,7 @@ export const getCategories = () => async dispatch => {
 export const getLocations = () => async dispatch => {
   try {
     dispatch({ type: GET_LOCATIONS_LOADING })
-    const response = await axios.get(`${baseUrl}/locations`)
+    const response = await axios.get(`${baseUrl}/available-locations`)
     const {
       data: { message, locations },
       status,
