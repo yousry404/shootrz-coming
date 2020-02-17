@@ -67,12 +67,17 @@ $primary: #fe515f;
     border: 2px solid $primary;
     &__address {
       flex-grow: 1;
+      padding: 10px;
+      font-family: "AGBold";
+      text-transform: capitalize;
     }
     &__count {
       color: #fff;
       background: $primary;
-      font-size: 22px;
+      font-size: 14;
       text-align: right;
+      padding: 10px;
+      font-family: "AGBold";
     }
   }
 }

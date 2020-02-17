@@ -28,7 +28,7 @@ const EventsList = ({ events }) =>
 
         <Col md={6}>
           <div style={{height: "250px", background: "#ccc"}}></div>
-          <div onClick={handleClickEvent}  className="events-page__event">
+          <div onClick={() => handleClickEvent(event.id)}  className="events-page__event">
           <p className="events-page__event__address">{event.address}</p>
           <div className="events-page__event__count"> 
           
