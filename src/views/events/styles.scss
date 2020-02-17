@@ -23,13 +23,23 @@ $primary: #fe515f;
         color: black;
         text-decoration: none;
       }
+      @media (max-width: 768px) {
+        font-size: 16px;
+      } 
+
+    }
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 24px;
+      }
+     
     }
   }
   &__header-full {
     margin-top: 40px;
     h1 {
       font-family: "AGBold";
-      font-size: 32px;
+      font-size: 33px;
     }
     a {
       color: #fff;
@@ -41,6 +51,28 @@ $primary: #fe515f;
         color: #fff;
         text-decoration: none;
       }
+    }
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 24px;
+      }
+      a {
+        font-size: 14px;
+      }
+    }
+  }
+  &__event {
+    cursor: pointer;
+    display: flex;
+    border: 2px solid $primary;
+    &__address {
+      flex-grow: 1;
+    }
+    &__count {
+      color: #fff;
+      background: $primary;
+      font-size: 22px;
+      text-align: right;
     }
   }
 }

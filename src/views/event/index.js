@@ -14,7 +14,8 @@ const Event = ({ uuid, getEvent, event }) => {
       case "payment":
         return (
           <div className="event-page__payment">
-            <h1>Your event still needs payment confirmation</h1>
+            {/* <h1>Your event still needs payment confirmation</h1> */}
+            <h1>Assigning a shooter for you!</h1>
           </div>
         )
       case "assigning":

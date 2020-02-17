@@ -1,5 +1,7 @@
 import axios from "axios"
 import { baseUrl } from "../../services/api"
+import { navigate } from "gatsby"
+
 import setHours from 'date-fns/setHours'
 import setMinutes from 'date-fns/setMinutes'
 export const GET_CATEGORIES_SUCCESS = "GET_CATEGORIES_SUCCESS"
@@ -126,13 +128,14 @@ export const bookEvent = ({ token, packageId, locationId, address, date,hour, mi
       { headers: { Authorization: token, "Content-Type": "application/json" } }
     )
     const {
-      data: { message },
+      data: { message, eventId },
       status,
     } = response
     if (status !== 200) {
       dispatch({ type: BOOK_EVENT_FAILURE, message })
     } else {
         dispatch({ type: BOOK_EVENT_SUCCESS })
+        navigate(`/app/event/${eventId}`)
     }
   } catch (e) {
     console.log(e)

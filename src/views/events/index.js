@@ -6,7 +6,7 @@ import { bindActionCreators } from "redux"
 import { getEvents } from "./actions"
 import { makeStyles } from "@material-ui/core/styles"
 import CircularProgress from "@material-ui/core/CircularProgress"
-import { Link } from "gatsby"
+import { Link, navigate } from "gatsby"
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 
 const useStyles = makeStyles(theme => ({
@@ -18,14 +18,27 @@ const useStyles = makeStyles(theme => ({
     },
   },
 }))
+const handleClickEvent = (id) => {
+  navigate(`/app/event${id}`)
+}
 const EventsList = ({ events }) =>
   events.length > 0 ? (
     <Row>
       {events.map(event => (
 
         <Col md={6}>
-        <p>{event.address}</p>
-        <Link to={`/app/event/${event.id}`}>check event</Link>
+          <div style={{height: "250px", background: "#ccc"}}></div>
+          <div onClick={handleClickEvent}  className="events-page__event">
+          <p className="events-page__event__address">{event.address}</p>
+          <div className="events-page__event__count"> 
+          
+            <p>0</p>
+            <p>Photos</p>
+          </div>
+          {/* <Link to={`/app/event/${event.id}`}>check event</Link> */}
+          </div>
+        
+       
 
         </Col>
 

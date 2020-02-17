@@ -12,7 +12,12 @@ import PackageStep from "./packageStep"
 import { connect } from "react-redux"
 import { bindActionCreators } from "redux"
 import ConfirmationStep from "./confirmationStep"
-import { getCategories, getLocations, selectType, setActiveStep } from "./actions"
+import {
+  getCategories,
+  getLocations,
+  selectType,
+  setActiveStep,
+} from "./actions"
 const useStyles = makeStyles(theme => ({
   root: {
     width: "90%",
@@ -76,7 +81,7 @@ const GetStepContent = ({ step, handleSelectType, bookProps }) => {
 
     case 4:
       return <PackageStep />
-    case 5: 
+    case 5:
       return <ConfirmationStep />
     default:
       return "Unknown step"
@@ -93,23 +98,20 @@ const HorizontalLinearStepper = ({ bookProps, selectType, setActiveStep }) => {
     formSubmitted,
     error,
     message,
-    activeStep
+    activeStep,
   } = bookProps
   // const [activeStep, setActiveStep] = React.useState(0)
   // const [setSkipped] = React.useState(new Set())
   const steps = ["Type", "Photography Type", "Location", "Date Time", "Package"]
 
-
-
-
   const handleBack = () => {
-    setActiveStep({ activeStep: activeStep - 1})
+    setActiveStep({ activeStep: activeStep - 1 })
   }
   const handleSelectType = type => {
-    setActiveStep({ activeStep: activeStep + 1})
+    setActiveStep({ activeStep: activeStep + 1 })
     selectType({ shootType: type })
   }
- 
+
   const isFormComplete =
     selectedCategory &&
     selectedPackage &&
@@ -119,16 +121,29 @@ const HorizontalLinearStepper = ({ bookProps, selectType, setActiveStep }) => {
   return (
     <div className={classes.root}>
       <div className="book-page__stepper">
-      {activeStep < 5 && <Stepper activeStep={activeStep} alternativeLabel>
+        {activeStep < 5 && (
+          <Stepper activeStep={activeStep} alternativeLabel>
+            {steps.map((label, index) => {
+              return (
+                <Step key={label}>
+                  <StepLabel className={classes.step}>{label}</StepLabel>
+                </Step>
+              )
+            })}
+          </Stepper>
+        )}
+      </div>
+      <div className="book-page__stepper-mobile">
+        <ul>
         {steps.map((label, index) => {
-          return (
-            <Step key={label}>
-              <StepLabel className={classes.step}>{label}</StepLabel>
-            </Step>
-          )
-        })}
-      </Stepper>
-}
+              return (
+                <li key={label+index} className={activeStep === index + 1 && "active-step"}>
+                  {label}
+                </li>
+              )
+            })}
+        </ul>
+    
       </div>
       <div style={{ textAlign: "center" }}>
         <div className="book-page__steps">
@@ -156,16 +171,38 @@ const HorizontalLinearStepper = ({ bookProps, selectType, setActiveStep }) => {
             )} */}
           </div>
           <div>
-            {!isFormComplete }
-          {( selectedCategory || selectedPackage || selectedLocation || address) && <p style={{width: '55%', textAlign: 'left', margin: 'auto', fontSize: '16px' }}>{(Object.keys(selectedCategory).length > 0 && selectedCategory.constructor === Object) && selectedCategory.name + " > "}{ selectedLocation && selectedLocation.name}{ address && ", " + address}</p>}
+            {!isFormComplete}
+            {(selectedCategory ||
+              selectedPackage ||
+              selectedLocation ||
+              address) && (
+              <p
+                style={{
+                  width: "55%",
+                  textAlign: "left",
+                  margin: "auto",
+                  fontSize: "16px",
+                }}
+              >
+                {Object.keys(selectedCategory).length > 0 &&
+                  selectedCategory.constructor === Object &&
+                  selectedCategory.name + " > "}
+                {selectedLocation && selectedLocation.name}
+                {address && ", " + address}
+              </p>
+            )}
           </div>
           <div>
-            {formSubmitted &&!error &&(<div className="alert alert-success" role="alert">
-              Your Event is placed successfully
-            </div>)}
-            {formSubmitted && error &&(<div className="alert alert-danger" role="alert">
-              {message}
-            </div>)}
+            {formSubmitted && !error && (
+              <div className="alert alert-success" role="alert">
+                Your Event is placed successfully
+              </div>
+            )}
+            {formSubmitted && error && (
+              <div className="alert alert-danger" role="alert">
+                {message}
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -182,12 +219,18 @@ const mapDispatchToProps = dispatch =>
       getCategories,
       getLocations,
       selectType,
-      setActiveStep
+      setActiveStep,
     },
     dispatch
   )
 
-const Book = ({ getCategories, book, getLocations, selectType, setActiveStep }) => {
+const Book = ({
+  getCategories,
+  book,
+  getLocations,
+  selectType,
+  setActiveStep,
+}) => {
   useEffect(() => {
     getCategories()
     getLocations()

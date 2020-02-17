@@ -10,11 +10,29 @@ $primary: #fe515f;
 
     }
     @media (max-width: 768px) {
+      display: none;
       width: 100%;
       margin: 0;
       .MuiStepper-root {
         padding: 0 !important;
       }
+    }
+  }
+  &__stepper-mobile {
+    display: none;
+    text-align: center;
+    .active-step {
+      color: $primary;
+    }
+    ul {
+      margin: 10px 0;
+    }
+    li {
+      list-style: none;
+    }
+    @media (max-width: 768px) {
+      display: block;
+      
     }
   }
   &__steps {
@@ -126,6 +144,9 @@ $primary: #fe515f;
     width: 55%;
     margin: 50px auto 0;
     text-align: left;
+    button {
+      border: none;
+    }
     @media (max-width: 768px) {
       text-align: center;
     }

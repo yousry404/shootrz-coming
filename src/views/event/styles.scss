@@ -7,6 +7,10 @@ $primary: #fe515f;
         h1 {
           font-family: "AGBold";
           font-size: 32px;
+          @media (max-width: 768px) {
+            
+              font-size: 24px;
+          }
         }
         &__new {
           color: #fff;
@@ -18,6 +22,11 @@ $primary: #fe515f;
             color: #fff;
             text-decoration: none;
           }
+          @media (max-width: 768px) {
+            
+              font-size: 16px;
+          }
+        
         }
         &__before {
             position: absolute;
@@ -30,7 +39,16 @@ $primary: #fe515f;
                 color: $primary;
                 text-decoration: none;
               }
+
+              @media (max-width: 768px) {  
+                left: -32px;
+              }
         }
+
+        @media (max-width: 768px) {  
+          padding-left: 28px;
+        }
+    
     }
     &__payment {
         text-align: center;
