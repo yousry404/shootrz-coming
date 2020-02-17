@@ -65,6 +65,7 @@ $primary: #fe515f;
     cursor: pointer;
     display: flex;
     border: 2px solid $primary;
+    margin-bottom: 30px;
     &__address {
       flex-grow: 1;
       padding: 10px;

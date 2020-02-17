@@ -19,7 +19,7 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 const handleClickEvent = (id) => {
-  navigate(`/app/event${id}`)
+  navigate(`/app/event/${id}`)
 }
 const EventsList = ({ events }) =>
   events.length > 0 ? (
