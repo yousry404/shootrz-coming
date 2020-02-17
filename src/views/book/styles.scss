@@ -126,6 +126,8 @@ $primary: #fe515f;
       }
       label {
         font-family: "AGRegular" !important;
+        padding: 0 5px;
+        background: #fff;
       }
     }
     &__next {
@@ -136,9 +138,7 @@ $primary: #fe515f;
       padding: 10px 0;
       border: 0;
     }
-    &__input {
-      margin-bottom: 20px !important;
-    }
+    
   }
   &__confirm {
     width: 55%;
@@ -183,6 +183,10 @@ $primary: #fe515f;
     h1 {
       font-family: "AGBold";
       font-size: 22px;
+    }
+    label {
+      padding: 0 5px;
+        background: #fff;
     }
   }
   &__buttons {

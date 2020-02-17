@@ -9,6 +9,17 @@ import {bindActionCreators} from "redux"
 import { selectLocation, changeAddress, setActiveStep } from "./actions"
 import DateFnsUtils from '@date-io/date-fns';
 
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles(theme => ({
+  formControl: {
+    margin: theme.spacing(1),
+    minWidth: 120,
+    fontFamily:"AGBold",
+    fontSize: "14px"
+  }
+ 
+}));
 const LocationStep = ({ selectLocation, selectedLocation, locations, address, changeAddress, setActiveStep }) => {
   const handleChange = ({target}) => {
     selectLocation({ location: target.value})
@@ -19,13 +30,14 @@ const LocationStep = ({ selectLocation, selectedLocation, locations, address, ch
   const handleClickNext = () => {
     setActiveStep({ activeStep: 3})
   }
+  const classes = useStyles()
   return (
     // className={classes.formControl}
     <div className="book-page__location">
       <h1>Where is the shoot taking place?</h1>
       <div className="book-page__location__inputs">
-      <FormControl variant="outlined" className="book-page__location__input">
-        <InputLabel>
+      <FormControl variant="outlined" className={classes.formControl}>
+        <InputLabel id="demo-simple-select-filled-label">
           Governorate
         </InputLabel>
         <Select
