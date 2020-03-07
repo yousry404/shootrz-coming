@@ -16,6 +16,7 @@ export const isLoggedIn = () => {
 }
 
 export const logout = callback => {
-  setUser({})
+  window.localStorage.removeItem("shootrzToken")
+  window.localStorage.removeItem("shootrzName")
   callback()
 }

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import {Link} from "gatsby";
+import { Link, navigate } from "gatsby";
 import "bootstrap-css-only/css/bootstrap.min.css";
-
+import { logout } from "../services/auth"
 import logo from "../images/logoApp.svg"
 
 
@@ -23,7 +23,10 @@ const Navigation = props => {
   const [isOpen, setIsOpen] = useState(false);
   const [name, setName] = useState('');
   const toggle = () => setIsOpen(!isOpen);
-  
+  const handleLogout = () => {
+
+    logout(() => navigate("/app/login"))
+  }
   useEffect(() => {
     if(localStorage.getItem('shootrzName'))
       setName(localStorage.getItem('shootrzName'))
@@ -58,7 +61,7 @@ const Navigation = props => {
                 <DropdownMenu right>
                   <DropdownItem><Link to="/app/events/">My Events</Link></DropdownItem>
                   <DropdownItem>Edit Profile</DropdownItem>
-                  <DropdownItem>Logout</DropdownItem>
+                  <DropdownItem onClick={() => handleLogout()}>Logout</DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown> :  
                 <NavItem>
