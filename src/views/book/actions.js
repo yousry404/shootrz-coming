@@ -26,6 +26,7 @@ export const CHANGE_HOUR = "CHANGE_HOUR"
 export const CHANGE_MINUTE = "CHANGE_MINUTE"
 export const CHANGE_AM = "CHANGE_AM"
 export const ADD_CONFIRM_ERROR = "ADD_CONFIRM_ERROR"
+export const RESET_BOOKING_DATA = "RESET_BOOKING_DATA";
 export const selectType = ({ shootType }) => ({
   type: SELECT_TYPE,
   shootType,
@@ -143,3 +144,6 @@ export const bookEvent = ({ token, packageId, locationId, address, date,hour, mi
 
   }
 }
+
+
+export const resetBookingData = () => ({ type: RESET_BOOKING_DATA })

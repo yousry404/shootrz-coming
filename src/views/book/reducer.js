@@ -18,7 +18,8 @@ import {
   CHANGE_AM,
   CHANGE_MINUTE,
   CHANGE_HOUR,
-  ADD_CONFIRM_ERROR
+  ADD_CONFIRM_ERROR,
+  RESET_BOOKING_DATA
 } from "./actions"
 
 const initial_state = {
@@ -103,6 +104,8 @@ export default (state = initial_state, action) => {
         message: action.message,
         formSubmitted: true,
       }
+    case RESET_BOOKING_DATA:
+      return {...initial_state}
     default:
       return state
   }

@@ -4,7 +4,7 @@ import Stepper from "@material-ui/core/Stepper"
 import Step from "@material-ui/core/Step"
 import StepLabel from "@material-ui/core/StepLabel"
 
-import { NavigateBefore, NavigateNext } from "@material-ui/icons"
+import { NavigateBefore } from "@material-ui/icons"
 import Type from "./typeStep"
 import LocationStep from "./locationStep"
 import DateStep from "./dateStep"
@@ -17,6 +17,7 @@ import {
   getLocations,
   selectType,
   setActiveStep,
+  resetBookingData
 } from "./actions"
 const useStyles = makeStyles(theme => ({
   root: {
@@ -137,7 +138,7 @@ const HorizontalLinearStepper = ({ bookProps, selectType, setActiveStep }) => {
         <ul>
         {steps.map((label, index) => {
               return (
-                <li key={label+index} className={activeStep === index + 1 && "active-step"}>
+                <li key={label+index} className={activeStep === index + 1 ? "active-step" :""}>
                   {label}
                 </li>
               )
@@ -209,31 +210,20 @@ const HorizontalLinearStepper = ({ bookProps, selectType, setActiveStep }) => {
     </div>
   )
 }
-
-const mapStateToProps = ({ book }) => ({
-  book,
-})
-const mapDispatchToProps = dispatch =>
-  bindActionCreators(
-    {
-      getCategories,
-      getLocations,
-      selectType,
-      setActiveStep,
-    },
-    dispatch
-  )
-
 const Book = ({
   getCategories,
   book,
   getLocations,
   selectType,
   setActiveStep,
+  resetBookingData
 }) => {
   useEffect(() => {
-    getCategories()
-    getLocations()
+    getCategories();
+    getLocations();
+    return () => {
+      resetBookingData()
+    }
   }, [])
   return (
     <div className="book-page">
@@ -245,7 +235,20 @@ const Book = ({
     </div>
   )
 }
-
+const mapStateToProps = ({ book }) => ({
+  book,
+})
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(
+    {
+      getCategories,
+      getLocations,
+      selectType,
+      setActiveStep,
+      resetBookingData
+    },
+    dispatch
+  )
 export default connect(
   mapStateToProps,
   mapDispatchToProps

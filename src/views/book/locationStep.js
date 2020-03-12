@@ -7,8 +7,6 @@ import Select from "@material-ui/core/Select"
 import {connect} from "react-redux"
 import {bindActionCreators} from "redux"
 import { selectLocation, changeAddress, setActiveStep } from "./actions"
-import DateFnsUtils from '@date-io/date-fns';
-
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
