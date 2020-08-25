@@ -167,6 +167,9 @@ footer {
   margin-left: 0;
 }
 
+.button-loading {
+  cursor: not-allowed;
+}
 
 .no-gutters > [class*="col-"] {
   padding-right: 0;
@@ -213,7 +216,6 @@ footer {
   }
   .subscribe input {
     font-size: 12px !important;
-    
   }
   .subscribe__button {
     font-size: 14px !important;

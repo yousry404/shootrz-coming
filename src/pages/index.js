@@ -58,7 +58,6 @@ const IndexPage = () => {
               <div className="title">
               <img src={Logo} alt="Shootz" />
               <h1>SHOOTRZ</h1>
-
               </div>
               <p className="on-demand">
                 Photographers on-demand
@@ -79,7 +78,7 @@ const IndexPage = () => {
                     />
                     <div className="input-group-append ">
                       <input
-                        className="subscribe__button"
+                        className={loading ? "subscribe__button button-loading" : "subscribe__button"}
                         id="button-addon2"
                         type="submit"
                         value="Subscribe"
@@ -87,8 +86,7 @@ const IndexPage = () => {
                        />
                     </div>
                 </form>
-
-                {success && <p className="result">Thank you for subscribing to shootrz</p>}
+                {success && <p className="result">Thank you for subscribing to Shootrz</p>}
                 {error && <p className="result">Please try again</p>}
                 <a className="interested" href="https://photographer.shootrz.co/app/signup" target="_blank">Are you a photographer? You can join from here.</a>
 
