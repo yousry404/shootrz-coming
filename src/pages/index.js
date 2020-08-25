@@ -34,7 +34,6 @@ const IndexPage = () => {
         ],
         function(err, records) {
           setLoading(false)
-  
           if (err) {
             console.error(err)
             setError(true)
@@ -42,11 +41,11 @@ const IndexPage = () => {
           }
           records.forEach(function(record) {
             setSuccess(true)
+            setEmail("");
           })
         }
       )
     }
-   
   }
 
   return (
@@ -89,7 +88,7 @@ const IndexPage = () => {
                     </div>
                 </form>
 
-                {success && <p className="result">Thank you</p>}
+                {success && <p className="result">Thank you for subscribing to shootrz</p>}
                 {error && <p className="result">Please try again</p>}
                 <a className="interested" href="https://photographer.shootrz.co/app/signup" target="_blank">Are you a photographer? You can join from here.</a>
 
