@@ -5,10 +5,8 @@ import "../css/style.css"
 import Logo from "../images/logo.svg"
 import Airtable from "airtable";
 import Camera  from "../images/shootrz-photo.webp"
-// import dotenv from "dotenv"
 
 const IndexPage = () => {
-  // dotenv.config()
   const base = new Airtable({ apiKey: process.env.GATSBY_AIRTABLE }).base(
     "appchyGLZEPkWM5qj"
   )
@@ -67,29 +65,28 @@ const IndexPage = () => {
               <p className="interested">Interested in the idea? we can notify you once we start.</p>
               <div className="subscribe">
                 <form className="input-group" onSubmit={handleSubmit}>
+                  <input
+                    type="email"
+                    className="form-control"
+                    placeholder="Enter you email"
+                    aria-label="Recipient's username"
+                    aria-describedby="button-addon2"
+                    onChange={handleChangeEmail}
+                    value={email}
+                  />
+                  <div className="input-group-append ">
                     <input
-                      type="email"
-                      className="form-control"
-                      placeholder="Enter you email"
-                      aria-label="Recipient's username"
-                      aria-describedby="button-addon2"
-                      onChange={handleChangeEmail}
-                      value={email}
-                    />
-                    <div className="input-group-append ">
-                      <input
-                        className={loading ? "subscribe__button button-loading" : "subscribe__button"}
-                        id="button-addon2"
-                        type="submit"
-                        value="Subscribe"
-                        disabled={loading}
-                       />
-                    </div>
+                      className={loading ? "subscribe__button button-loading" : "subscribe__button"}
+                      id="button-addon2"
+                      type="submit"
+                      value="Subscribe"
+                      disabled={loading}
+                      />
+                  </div>
+                  {success && <p className="result">Thank you for subscribing to Shootrz</p>}
+                  {error && <p className="result">Please try again</p>}
                 </form>
-                {success && <p className="result">Thank you for subscribing to Shootrz</p>}
-                {error && <p className="result">Please try again</p>}
                 <a className="interested" href="https://photographer.shootrz.co/app/signup" target="_blank">Are you a photographer? You can join from here.</a>
-
               </div>
             </div>
           </div>

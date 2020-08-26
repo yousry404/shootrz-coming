@@ -83,7 +83,7 @@ header .mena {
 header .interested {
   font-size: 16px;
   color: #fff;
-  margin-top: 20px;
+  margin-top: 24px;
   margin-bottom: 10px;
 }
 
@@ -145,7 +145,7 @@ p {
 }
 .result {
   position: absolute;
-  top: 100%;
+  top: 110%;
   left: 0;
 }
 form {
@@ -219,8 +219,5 @@ footer {
   }
   .subscribe__button {
     font-size: 14px !important;
-  }
-  .result {
-    left: 10px;
   }
 }
