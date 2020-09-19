@@ -119,6 +119,15 @@ const HorizontalLinearStepper = ({ bookProps, selectType, setActiveStep }) => {
     selectedDate &&
     address &&
     selectedLocation
+  const renderSelectedPackage = () => {
+    if(selectedPackage.hours) {
+      return (
+        "> " + selectedPackage.hours + " Hours, " + selectedPackage.price + " EGP"
+      )
+    } else {
+      return null
+    }
+  }
   return (
     <div className={classes.root}>
       <div className="book-page__stepper">
@@ -171,7 +180,7 @@ const HorizontalLinearStepper = ({ bookProps, selectType, setActiveStep }) => {
             )} */}
           </div>
           <div>
-            {/* {!isFormComplete} */}
+            {!isFormComplete}
             {(selectedCategory ||
               selectedPackage ||
               selectedLocation ||
@@ -189,7 +198,7 @@ const HorizontalLinearStepper = ({ bookProps, selectType, setActiveStep }) => {
                   selectedCategory.name + " > "}
                 {selectedLocation && selectedLocation.name}
                 {address && ", " + address}
-                {selectedPackage && "> " + selectedPackage.hours + "hours, " + selectedPackage.price + " EGP"}
+                {renderSelectedPackage()}
               </p>
             )}
           </div>
