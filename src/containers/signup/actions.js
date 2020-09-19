@@ -2,6 +2,7 @@ import axios from "axios"
 import { setUser } from "../../services/auth"
 import { navigate } from "gatsby"
 import { baseUrl } from "../../services/api"
+import { setCookie } from "../../utils/cookie"
 
 // action types
 export const CHANGE_EMAIL = "SIGNUP::CHANGE_EMAIL"
@@ -10,6 +11,7 @@ export const CHANGE_PASSWORD = "SIGNUP::CHANGE_PASSWORD"
 export const CHANGE_CONFIRM_PASSWORD = "SIGNUP::CHANGE_CONFIRM_PASSWORD"
 
 export const SUBMIT_FORM_SUCCESS = "SIGNUP::SUBMIT_FORM_SUCCESS"
+export const SUBMIT_FORM_NAME = "SIGNUP::SUBMIT_FORM_NAME"
 export const SUBMIT_FORM_ERROR = "SIGNUP::SUBMIT_FORM_ERROR"
 export const CHANGE_ERROR = "SIGNUP::CHANGE_ERROR"
 
@@ -46,9 +48,14 @@ export const changeError = (errorType, isError) => ({
   errorType,
   isError,
 })
+export const submitFormName = (name) => ({
+  type: SUBMIT_FORM_NAME,
+  name
+})
 
 export const submitForm = ({ name, email, password }) => async dispatch => {
   try {
+    dispatch({ type: SUBMIT_FORM_ERROR, msg: "" })
     const response = await axios.post(`${baseUrl}/signup`, {
       name,
       email,
@@ -62,14 +69,14 @@ export const submitForm = ({ name, email, password }) => async dispatch => {
       dispatch({ type: SUBMIT_FORM_ERROR, msg })
     } else {
       dispatch({ type: SUBMIT_FORM_SUCCESS, msg })
+      dispatch({ type: SUBMIT_FORM_NAME, name })
       const settingUserPromise = new Promise((resolve, reject) =>
-        resolve(setUser(access_token),localStorage.setItem("shootrzName", name)),
+        resolve(setUser(access_token), setCookie("shootrz-name", name), ),
       )
       await settingUserPromise
       navigate("/app/book/")
     }
   } catch (e) {
-    // console.log("error", e)
-    dispatch({ type: SUBMIT_FORM_ERROR, msg: "Error in logging in" })
+    dispatch({ type: SUBMIT_FORM_ERROR, msg: e.response.data.msg || "Error in signing up" })
   }
 }

@@ -12,7 +12,8 @@ import addHours from "date-fns/addHours"
 import CreateIcon from "@material-ui/icons/Create"
 import setHours from 'date-fns/setHours'
 import setMinutes from 'date-fns/setMinutes'
-
+import { getCookie } from "../../utils/cookie"
+import logoSmall from "../../images/logo_mini.svg"
 const OrderConfirmation = ({
   address,
   selectedPackage,
@@ -33,7 +34,7 @@ const OrderConfirmation = ({
   const handleClickLocation = () => {
     setActiveStep({ activeStep: 2 })
   }
-  const token = JSON.parse(localStorage.getItem("shootrzToken"))
+  const token = JSON.parse(getCookie("shootrz-token"))
 
   const handleConfirm = () => {
     if (
@@ -101,6 +102,10 @@ const OrderConfirmation = ({
         className="book-page__confirm__button mt-3"
         onClick={handleConfirm}
       >
+        {/* <div className="confirmation-logo">
+          <div className="success-circle"></div>
+          <img src={logoSmall} alt="" />
+        </div> */}
         Confirm
       </button>
       {confirmFormError && (

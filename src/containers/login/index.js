@@ -8,7 +8,7 @@ import { bindActionCreators } from "redux"
 import { TextField } from "@material-ui/core"
 import FormHelperText from "@material-ui/core/FormHelperText"
 import FormControl from "@material-ui/core/FormControl"
-
+import { Alert } from "reactstrap"
 const Login = ({
   email,
   password,
@@ -18,6 +18,7 @@ const Login = ({
   changePassword,
   submitForm,
   changeError,
+  formError
 }) => {
   const handleUpdateEmail = event => {
     changeEmail(event.target.value)
@@ -93,6 +94,7 @@ const Login = ({
             value="Sign In"
             className="login-page__submit mt-3"
           />
+          {formError && <Alert color="danger" style={{width: "40%", marginTop: 16 }}>{formError}</Alert> }
         </form>
         <div className="text-center login-page__signup">
           <span>Don't have an account? </span>
@@ -103,13 +105,14 @@ const Login = ({
   )
 }
 const mapStateToProps = ({
-  login: { email, password, emailError, passwordError },
+  login: { email, password, emailError, passwordError, formError },
 }) => {
   return {
     email,
     password,
     emailError,
     passwordError,
+    formError
   }
 }
 const mapDispatchToProps = dispatch => {

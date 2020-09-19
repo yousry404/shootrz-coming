@@ -20,7 +20,6 @@ export default (state =initial_state, action) => {
             return {...state, loading: true}
         case GET_EVENT_FAILURE:
             return {...state, loading: false, message: action.message}
-    
         default:
             return state;
     }

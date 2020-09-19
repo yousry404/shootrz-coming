@@ -27,7 +27,8 @@ const DateStep = ({
   minute,
   am
 }) => {
-  const today = new Date()
+  const today = new Date();
+  const after3Days = today.setDate(today.getDate() + 3);
   const handleDateChange = date => {
     selectDate({ date })
   }
@@ -53,11 +54,10 @@ const DateStep = ({
         <Row>
           <Col sm="6">
             <h1>Date</h1>
-
             <Calendar
               onChange={handleDateChange}
               date={selectedDate}
-              minDate={today}
+              minDate={after3Days}
             />
           </Col>
           <Col sm="6" className="d-flex flex-column">

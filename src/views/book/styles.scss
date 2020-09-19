@@ -215,3 +215,24 @@ $primary: #fe515f;
     font-size: 14px;
   }
 }
+
+
+
+.success-circle {
+  background: $primary;
+  width: 500px;
+  height: 500px;
+  margin: auto;
+  border-radius: 100%;
+  overflow: hidden;
+  span {
+    display: block;
+    font-size:240px;
+    color: #fff;
+    height: 500px;
+    width: 500px;
+    text-align: center;
+    padding-top: 24%;
+  }
+
+}

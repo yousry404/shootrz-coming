@@ -4,6 +4,8 @@ import {
   CHANGE_PASSWORD,
   CHANGE_CONFIRM_PASSWORD,
   CHANGE_ERROR,
+  SUBMIT_FORM_ERROR,
+  SUBMIT_FORM_NAME
 } from "./actions"
 
 const initial_state = {
@@ -15,6 +17,8 @@ const initial_state = {
   nameError: false,
   passwordError: false,
   confirmPasswordError: false,
+  formError: "",
+  userName: ""
 }
 
 export default (state = initial_state, action) => {
@@ -29,7 +33,10 @@ export default (state = initial_state, action) => {
       return { ...state, confirmPassword: action.value }
     case CHANGE_ERROR:
       return { ...state, [action.errorType + "Error"]: action.isError }
-
+    case SUBMIT_FORM_ERROR:
+      return { ...state, formError: action.msg }
+    case SUBMIT_FORM_NAME:
+      return { ...state, userName: action.name }
     default:
       return state
   }

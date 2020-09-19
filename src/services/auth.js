@@ -1,14 +1,12 @@
-export const isBrowser = () => typeof window !== "undefined"
+import { getCookie, setCookie, deleteCookie } from "../utils/cookie"
 
+export const isBrowser = () => typeof window !== "undefined"
 export const getUser = () =>
-  isBrowser() && window.localStorage.getItem("shootrzToken")
-    ? JSON.parse(window.localStorage.getItem("shootrzToken"))
+  isBrowser() && getCookie("shootrz-token")
+    ? JSON.parse(getCookie("shootrz-token"))
     : null
 
-export const setUser = user =>
-  window.localStorage.setItem("shootrzToken", JSON.stringify(user))
-
-
+export const setUser = user => setCookie("shootrz-token", JSON.stringify(user))
 
 export const isLoggedIn = () => {
   const user = getUser()
@@ -16,7 +14,7 @@ export const isLoggedIn = () => {
 }
 
 export const logout = callback => {
-  window.localStorage.removeItem("shootrzToken")
-  window.localStorage.removeItem("shootrzName")
+  deleteCookie("shootrz-token")
+  deleteCookie("shootrz-name")
   callback()
 }

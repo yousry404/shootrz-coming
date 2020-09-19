@@ -33,10 +33,8 @@ const Home = () => {
             <div className="header__camera">
               <div className="header__camera__image">
                 <img  src={camera} alt="camera" />
-
               </div>
             </div>
-            
           </div>
         </div>
 

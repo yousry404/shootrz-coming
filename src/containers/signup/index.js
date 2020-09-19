@@ -6,7 +6,7 @@ import { bindActionCreators } from "redux"
 import { connect } from "react-redux"
 import FormHelperText from "@material-ui/core/FormHelperText"
 import FormControl from "@material-ui/core/FormControl"
-
+import { Alert } from "reactstrap";
 import {
   changeName,
   changeEmail,
@@ -30,6 +30,7 @@ function Signup({
   changeConfirmPassword,
   submitForm,
   changeError,
+  formError
 }) {
   const handldeChangeName = e => {
     changeName(e.target.value)
@@ -142,6 +143,7 @@ function Signup({
         <Button variant="contained" onClick={handleSignup}>
           sign up
         </Button>
+        {formError && <Alert color="danger" style={{width: "100%", marginTop: 16}}>{formError}</Alert> }
       </div>
     </div>
   )
@@ -157,6 +159,7 @@ const mapStateToProps = ({
     emailError,
     passwordError,
     confirmPasswordError,
+    formError
   },
 }) => {
   return {
@@ -168,6 +171,7 @@ const mapStateToProps = ({
     emailError,
     passwordError,
     confirmPasswordError,
+    formError
   }
 }
 const mapDispatchToProps = dispatch => {

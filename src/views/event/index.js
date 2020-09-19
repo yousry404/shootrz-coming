@@ -5,16 +5,16 @@ import { bindActionCreators } from "redux"
 import { Row, Col, Container } from "reactstrap"
 import { Link } from "gatsby"
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
-import  { NavigateBefore} from "@material-ui/icons"
+import  { NavigateBefore } from "@material-ui/icons"
+import { getCookie } from "../../utils/cookie"
 const Event = ({ uuid, getEvent, event }) => {
-  const token = JSON.parse(localStorage.getItem("shootrzToken"))
+  const token = JSON.parse(getCookie("shootrz-token"))
   const { status, items } = event
   const EventStatus = () => {
     switch (status) {
       case "payment":
         return (
           <div className="event-page__payment">
-            {/* <h1>Your event still needs payment confirmation</h1> */}
             <h1>Assigning a shooter for you!</h1>
           </div>
         )
@@ -57,8 +57,7 @@ const Event = ({ uuid, getEvent, event }) => {
     <div className="event-page">
       <Container>
         <div className="d-flex justify-content-between event-page__header">
-            <Link className="event-page__header__before" to="/app/events"><NavigateBefore /></Link>
-
+          <Link className="event-page__header__before" to="/app/events"><NavigateBefore /></Link>
           <h1>My Event</h1>
           <Link to="/app/book" className="event-page__header__new"><AddCircleOutlineIcon /> New booking</Link>
         </div>

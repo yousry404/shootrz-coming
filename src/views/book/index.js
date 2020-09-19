@@ -144,7 +144,6 @@ const HorizontalLinearStepper = ({ bookProps, selectType, setActiveStep }) => {
               )
             })}
         </ul>
-    
       </div>
       <div style={{ textAlign: "center" }}>
         <div className="book-page__steps">
@@ -172,7 +171,7 @@ const HorizontalLinearStepper = ({ bookProps, selectType, setActiveStep }) => {
             )} */}
           </div>
           <div>
-            {!isFormComplete}
+            {/* {!isFormComplete} */}
             {(selectedCategory ||
               selectedPackage ||
               selectedLocation ||
@@ -190,6 +189,7 @@ const HorizontalLinearStepper = ({ bookProps, selectType, setActiveStep }) => {
                   selectedCategory.name + " > "}
                 {selectedLocation && selectedLocation.name}
                 {address && ", " + address}
+                {selectedPackage && "> " + selectedPackage.hours + "hours, " + selectedPackage.price + " EGP"}
               </p>
             )}
           </div>
