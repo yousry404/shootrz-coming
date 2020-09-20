@@ -8,6 +8,8 @@ import {
   changeHour,
   changeMintue,
   changeAm,
+  showValidationError,
+  selectLocation
 } from "./actions"
 import { MuiPickersUtilsProvider, Calendar } from "@material-ui/pickers"
 import Select from "@material-ui/core/Select"
@@ -20,29 +22,40 @@ const DateStep = ({
   selectDate,
   selectedDate,
   setActiveStep,
+  showValidationError,
   changeHour,
   changeMintue,
   changeAm,
   hour,
   minute,
-  am
+  am,
+  dateChanged
 }) => {
   const today = new Date();
   const after3Days = today.setDate(today.getDate() + 3);
   const handleDateChange = date => {
     selectDate({ date })
+    showValidationError("")
   }
   const handleClickNext = () => {
-    setActiveStep({ activeStep: 4 })
+    if(dateChanged) {
+      setActiveStep({ activeStep: 4 })
+      showValidationError("")
+    } else {
+      showValidationError("Please provide your event date and time.")
+    }
   }
   const handleChangeHour = ({target}) => {
     changeHour({hour: target.value})
+    showValidationError("")
   }
   const handleChangeMinute = ({target}) => {
     changeMintue({minute: target.value})
+    showValidationError("")
   }
   const handleChangeAm = ({target}) => {
     changeAm({am: target.value})
+    showValidationError("")
   }
   const fontStyle = {
     fontFamily: "AGRegular",
@@ -106,11 +119,12 @@ const DateStep = ({
   )
 }
 
-const mapStateToProps = ({ book: { selectedDate, hour, minute, am } }) => ({
+const mapStateToProps = ({ book: { selectedDate, hour, minute, am, dateChanged } }) => ({
   selectedDate,
   hour,
   minute,
   am,
+  dateChanged,
 })
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
@@ -120,6 +134,7 @@ const mapDispatchToProps = dispatch =>
       changeHour,
       changeMintue,
       changeAm,
+      showValidationError
     },
     dispatch
   )

@@ -202,13 +202,18 @@ const HorizontalLinearStepper = ({ bookProps, selectType, setActiveStep }) => {
               </p>
             )}
           </div>
-          <div>
+          <div style={{ margin: "8px auto", width: "55%" }}>
             {formSubmitted && !error && (
               <div className="alert alert-success" role="alert">
                 Your Event is placed successfully
               </div>
             )}
             {formSubmitted && error && (
+              <div className="alert alert-danger" role="alert">
+                {message}
+              </div>
+            )}
+            {message && (
               <div className="alert alert-danger" role="alert">
                 {message}
               </div>

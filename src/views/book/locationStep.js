@@ -6,7 +6,7 @@ import FormControl from "@material-ui/core/FormControl"
 import Select from "@material-ui/core/Select"
 import {connect} from "react-redux"
 import {bindActionCreators} from "redux"
-import { selectLocation, changeAddress, setActiveStep } from "./actions"
+import { selectLocation, changeAddress, setActiveStep, showValidationError } from "./actions"
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
@@ -18,15 +18,22 @@ const useStyles = makeStyles(theme => ({
   }
  
 }));
-const LocationStep = ({ selectLocation, selectedLocation, locations, address, changeAddress, setActiveStep }) => {
+const LocationStep = ({ selectLocation, selectedLocation, locations, address, changeAddress, setActiveStep, showValidationError }) => {
   const handleChange = ({target}) => {
     selectLocation({ location: target.value})
+    showValidationError("")
   }
   const handleAddressChange = ({target}) => {
     changeAddress({ address: target.value})
+    showValidationError("")
   }
   const handleClickNext = () => {
-    setActiveStep({ activeStep: 3})
+    if(address && selectLocation) {
+      showValidationError("")
+      setActiveStep({ activeStep: 3})
+    } else {
+      showValidationError("Please provide your event location")
+    }
   }
   const classes = useStyles()
   return (
@@ -39,16 +46,13 @@ const LocationStep = ({ selectLocation, selectedLocation, locations, address, ch
           Governorate
         </InputLabel>
         <Select
-        
           value={selectedLocation}
           onChange={handleChange}
-          
         >
           {
             locations.map(location =>(<MenuItem key={location.id} value={location}>{location.name}</MenuItem>))
 
           }
-          
         </Select>
       </FormControl>
       {/* className={classes.formControl} */}
@@ -75,7 +79,6 @@ const LocationStep = ({ selectLocation, selectedLocation, locations, address, ch
         Next
       </button>
       </div>
-      
     </div>
   )
 }
@@ -88,7 +91,8 @@ const mapStateToProps = ({ book }) => ({
 const mapDispatchToProps = dispatch => bindActionCreators({ 
   selectLocation,
   changeAddress,
-  setActiveStep
+  setActiveStep,
+  showValidationError
 },dispatch)
 export default connect(mapStateToProps, mapDispatchToProps)(LocationStep)
 

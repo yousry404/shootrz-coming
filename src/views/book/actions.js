@@ -27,6 +27,7 @@ export const CHANGE_MINUTE = "CHANGE_MINUTE"
 export const CHANGE_AM = "CHANGE_AM"
 export const ADD_CONFIRM_ERROR = "ADD_CONFIRM_ERROR"
 export const RESET_BOOKING_DATA = "RESET_BOOKING_DATA";
+export const SHOW_VALIDATION_ERROR = "SHOW_VALIDATION_ERROR";
 export const selectType = ({ shootType }) => ({
   type: SELECT_TYPE,
   shootType,
@@ -70,6 +71,10 @@ export const addConfirmFormError = ({isError}) => ({
 export const setActiveStep = ({ activeStep }) => ({
   type: SET_ACTIVE_STEP,
   activeStep
+})
+export const showValidationError = (message) => ({
+  type: SHOW_VALIDATION_ERROR,
+  payload: message
 })
 export const getCategories = () => async dispatch => {
   try {

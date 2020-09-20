@@ -19,7 +19,8 @@ import {
   CHANGE_MINUTE,
   CHANGE_HOUR,
   ADD_CONFIRM_ERROR,
-  RESET_BOOKING_DATA
+  RESET_BOOKING_DATA,
+  SHOW_VALIDATION_ERROR
 } from "./actions"
 
 const initial_state = {
@@ -35,7 +36,8 @@ const initial_state = {
   selectedDate: new Date(),
   hour: 1,
   minute: '00',
-  am: 'pm', 
+  am: 'pm',
+  dateChanged: false,
   packages: [],
   selectedPackage: {},
   formSubmitted: false,
@@ -58,6 +60,8 @@ export default (state = initial_state, action) => {
       return { ...state, loading: true }
     case GET_LOCATIONS_FAILURE:
       return { ...state, loading: false, message: action.message }
+    case SHOW_VALIDATION_ERROR:
+      return { ...state, loading: false, message: action.payload }
     case SELECT_TYPE:
       return { ...state, selectedType: action.shootType, formSubmitted: false }
     case ADD_CONFIRM_ERROR:
@@ -75,11 +79,11 @@ export default (state = initial_state, action) => {
     case SELECT_LOCATION:
       return { ...state, selectedLocation: action.location, formSubmitted: false }
     case CHANGE_HOUR:
-      return { ...state, hour: action.hour, formSubmitted: false }
+      return { ...state, hour: action.hour, formSubmitted: false, dateChanged: true }
     case CHANGE_MINUTE:
-      return { ...state, minute: action.minute, formSubmitted: false }
+      return { ...state, minute: action.minute, formSubmitted: false, dateChanged: true }
     case CHANGE_AM:
-      return { ...state, am: action.am, formSubmitted: false }
+      return { ...state, am: action.am, formSubmitted: false, dateChanged: true }
     case CHANGE_ADDRESS:
       return { ...state, address: action.address, formSubmitted: false }
     case SET_ACTIVE_STEP:
